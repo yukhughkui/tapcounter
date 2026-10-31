@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>手机之问 · 产品介绍与开发文档</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314223B'/%3E%3Ctext x='32' y='46' font-size='40' font-weight='900' text-anchor='middle' fill='%23FF5A36' font-family='sans-serif'%3E%3F%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#14223B;            /* 深藏青蓝（图标背景同源） */
+  --bg-deep:#0D1626;       /* 更深一档，卡片面 */
+  --bg-card:#101C31;       /* 卡片底 */
+  --ink:#F7F1E3;           /* 奶油白主体 */
+  --ink-dim:#B9C2D4;       /* 次级文字 */
+  --accent:#FF5A36;        /* 橙红（问号冲击波） */
+  --star:#FFC93C;          /* 亮黄（星花） */
+  --screen:#DCE6F2;        /* 浅蓝灰（手机屏） */
+  --line:rgba(247,241,227,.18);
+  --line-strong:rgba(247,241,227,.38);
+  --pad:clamp(20px,5vw,72px);
+  --r-lg:22px; --r-md:14px;
+  --sans:"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.75;font-size:16px;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(-45deg,rgba(255,255,255,.012) 0 2px,transparent 2px 14px)}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 var(--pad)}
+
+/* 漫画大标题 */
+.ml{font-weight:900;line-height:1.15;letter-spacing:.02em}
+.ml-big{font-size:clamp(44px,9vw,84px)}
+.ml-md{font-size:clamp(26px,4.6vw,38px)}
+.ml-outline{color:var(--ink);text-shadow:
+  2px 2px 0 rgba(13,22,38,.9),-2px 2px 0 rgba(13,22,38,.9),
+  2px -2px 0 rgba(13,22,38,.9),-2px -2px 0 rgba(13,22,38,.9),
+  0 0 0 6px rgba(13,22,38,.9),0 0 0 10px rgba(255,90,54,.28)}
+.sec{padding:clamp(56px,8vw,96px) 0}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(20px,3vw,34px)}
+.sec-no{font-family:var(--sans);font-weight:900;font-size:14px;letter-spacing:.14em;color:var(--accent)}
+.sec-title{font-weight:900;font-size:clamp(22px,3.4vw,30px)}
+.sec-sub{color:var(--ink-dim);max-width:60ch;margin-top:2px}
+
+/* 通用卡片 */
+.cards{display:grid;gap:18px}
+.c{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 22px}
+.c:hover{border-color:var(--line-strong)}
+.c h3{font-size:18px;font-weight:800;margin:14px 0 6px}
+.c p{color:var(--ink-dim);font-size:14.5px}
+
+/* 图标 */
+.ic{width:26px;height:26px;flex:none}
+.ic-acc{stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic-ink{stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic-star{stroke:var(--star);fill:none;stroke-width:2;stroke-linecap:round}
+
+/* ===== 首屏 ===== */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:72px 0}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg .ring{position:absolute;left:50%;top:46%;width:340px;height:340px;margin:-170px 0 0 -170px;
+  border:3px solid var(--accent);border-radius:50%;opacity:0;transform:scale(.4)}
+.hero-bg .ring.r1{animation:burst 3.6s ease-out infinite}
+.hero-bg .ring.r2{animation:burst 3.6s ease-out infinite 1.2s}
+.hero-bg .ring.r3{animation:burst 3.6s ease-out infinite 2.4s}
+@keyframes burst{0%{opacity:.85;transform:scale(.45)}70%{opacity:0;transform:scale(1.55)}100%{opacity:0;transform:scale(1.6)}}
+.hero-bg .ray{position:absolute;left:50%;top:46%;width:2px;height:60px;opacity:0;transform-origin:top center;background:var(--star)}
+.hero-bg .ray.a{animation:ray 3.6s ease-out infinite}
+.hero-bg .ray.b{animation:ray 3.6s ease-out infinite 1.2s}
+.hero-bg .ray.c{animation:ray 3.6s ease-out infinite 2.4s}
+@keyframes ray{0%{opacity:.9;transform:rotate(var(--a,0deg)) translateY(0) scaleY(.3)}60%{opacity:0;transform:rotate(var(--a,0deg)) translateY(-150px) scaleY(1)}100%{opacity:0}}
+.hero-bg .dot{position:absolute;width:10px;height:10px;background:var(--star);border-radius:50%;opacity:0}
+.hero-bg .dot.d1{left:18%;top:22%;animation:spark 4s ease-in-out infinite .4s}
+.hero-bg .dot.d2{right:16%;top:28%;width:7px;height:7px;animation:spark 4s ease-in-out infinite 1.6s}
+.hero-bg .dot.d3{left:26%;bottom:24%;width:6px;height:6px;background:var(--accent);animation:spark 4s ease-in-out infinite 2.7s}
+.hero-bg .dot.d4{right:24%;bottom:30%;animation:spark 4s ease-in-out infinite 1s}
+@keyframes spark{0%,100%{opacity:0;transform:scale(.4)}30%{opacity:.9;transform:scale(1.15)}55%{opacity:.4;transform:scale(.9)}}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;gap:26px}
+.hero-icon{position:relative;width:clamp(150px,30vw,210px);aspect-ratio:1;border-radius:24%;border:3px solid rgba(247,241,227,.25);
+  box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 10px rgba(255,90,54,.12);animation:float 5.5s ease-in-out infinite;overflow:hidden}
+.hero-icon img{width:100%;height:100%;object-fit:cover}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+.hero-title{position:relative}
+.hero-title .big{display:block}
+.hero-title .stroke{position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);white-space:nowrap;z-index:-1;
+  font-weight:900;font-size:clamp(80px,18vw,170px);color:transparent;-webkit-text-stroke:1.5px rgba(255,90,54,.14)}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--accent);border-radius:999px;
+  padding:7px 16px;font-size:13.5px;letter-spacing:.12em;color:var(--ink);background:rgba(255,90,54,.08)}
+.hero-quote{font-size:clamp(18px,3vw,24px);font-weight:700;max-width:34ch;color:var(--ink)}
+.hero-quote em{font-style:normal;color:var(--accent)}
+.hero-stats{display:flex;gap:clamp(18px,4vw,48px);flex-wrap:wrap;justify-content:center;margin-top:8px}
+.hs{text-align:center}
+.hs b{display:block;font-size:clamp(28px,4.6vw,44px);font-weight:900;color:var(--star)}
+.hs span{font-size:13px;color:var(--ink-dim);letter-spacing:.06em}
+.hero-scroll{margin-top:14px;font-size:13px;color:var(--ink-dim);letter-spacing:.18em;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ===== 故事 ===== */
+.story-grid{display:grid;gap:18px;grid-template-columns:1fr}
+.story-quote{border-left:4px solid var(--accent);background:linear-gradient(90deg,rgba(255,90,54,.08),rgba(255,90,54,0));
+  border-radius:0 var(--r-md) var(--r-md) 0;padding:22px 24px;font-size:17px;line-height:1.9;color:var(--ink)}
+.story-quote b{color:var(--accent)}
+.story-why{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:24px}
+.why{border:1px solid var(--line);border-radius:var(--r-md);padding:18px 18px}
+.why b{display:block;font-size:15px;margin-bottom:4px}
+.why span{font-size:13.5px;color:var(--ink-dim)}
+
+/* ===== 功能 ===== */
+.feat-grid{grid-template-columns:repeat(3,1fr)}
+.feat-grid .c:nth-child(4),.feat-grid .c:nth-child(5){grid-column:span 1}
+@media (max-width:900px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.feat-grid{grid-template-columns:1fr}}
+.feat-top{display:flex;align-items:center;gap:12px}
+.feat-top .num{font-weight:900;font-size:13px;color:var(--accent);letter-spacing:.08em}
+.feat-tag{display:inline-block;margin-top:10px;font-size:12.5px;color:var(--star);border:1px solid rgba(255,201,60,.35);
+  border-radius:6px;padding:2px 9px}
+
+/* ===== 交互演示 ===== */
+.demo-wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:26px;align-items:center}
+@media (max-width:820px){.demo-wrap{grid-template-columns:1fr}}
+.phone{width:min(300px,78vw);aspect-ratio:9/17;background:var(--screen);border-radius:26px;border:3px solid var(--ink);
+  position:relative;margin:0 auto;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5),inset 0 0 0 4px #0D1626}
+.phone::before{content:"";position:absolute;left:50%;top:9px;transform:translateX(-50%);width:34%;height:7px;border-radius:999px;background:rgba(13,22,38,.35)}
+.phone .p-screen{position:absolute;inset:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.phone .p-screen:active .pulse{transform:scale(1.6)}
+.phone .pulse{width:86px;height:86px;border:3px solid var(--accent);border-radius:50%;transition:transform .28s ease-out;position:relative}
+.phone .pulse::after{content:"";position:absolute;inset:-9px;border:2px solid var(--star);border-radius:50%;opacity:.5}
+.phone .p-tip{font-size:12.5px;color:#0D1626;font-weight:700;letter-spacing:.04em}
+.phone .p-num{font-size:clamp(34px,6vw,44px);font-weight:900;color:#0D1626;line-height:1.1;font-variant-numeric:tabular-nums}
+.phone .p-unit{font-size:12px;color:rgba(13,22,38,.6)}
+.phone .p-name{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);font-size:11.5px;color:rgba(13,22,38,.55);letter-spacing:.1em}
+.demo-panel{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px}
+.demo-panel h3{font-size:20px;font-weight:900;margin-bottom:6px}
+.demo-panel .hint{color:var(--ink-dim);font-size:13.5px;margin-bottom:18px}
+.meter{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:12px 0;border-top:1px dashed var(--line)}
+.meter:first-of-type{border-top:none}
+.meter .k{font-size:14.5px;font-weight:700}
+.meter .v{font-size:24px;font-weight:900;font-variant-numeric:tabular-nums;min-width:3ch;text-align:right}
+.meter .v.c{color:var(--accent)}.meter .v.s{color:#6FC7E8}.meter .v.t{color:var(--star)}
+.meter .ops{display:flex;gap:8px}
+.mbtn{border:1px solid var(--line-strong);background:transparent;color:var(--ink);border-radius:10px;padding:8px 13px;
+  font-size:13.5px;font-family:var(--sans);cursor:pointer;min-height:44px;min-width:44px;transition:.15s}
+.mbtn:hover{background:rgba(255,90,54,.14);border-color:var(--accent)}
+.mbtn:active{transform:translateY(1px)}
+.mbtn.zero{grid-column:1/-1;justify-self:start;color:var(--ink-dim)}
+.demo-note{margin-top:16px;font-size:12.5px;color:var(--ink-dim);border-top:1px solid var(--line);padding-top:12px}
+
+/* ===== 原理 ===== */
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:26px 0}
+@media (max-width:760px){.flow{grid-template-columns:1fr}.farrow{display:flex;align-items:center;justify-content:center;color:var(--accent);padding:4px 0;transform:rotate(90deg)}}
+.fstep{border:1.5px solid var(--line-strong);border-radius:var(--r-md);padding:16px 16px 14px;position:relative;background:var(--bg-deep)}
+.fstep .no{display:inline-block;background:var(--accent);color:#0D1626;font-weight:900;font-size:12px;border-radius:6px;padding:1px 8px;margin-bottom:10px}
+.fstep b{display:block;font-size:15px;margin-bottom:4px}
+.fstep span{font-size:13px;color:var(--ink-dim)}
+.farrow{display:none}
+@media (min-width:761px){
+  .flow{grid-template-columns:repeat(3,1fr) .5fr repeat(3,1fr)}
+  .farrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:900;font-size:20px}
+}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:14px;margin-top:8px}
+caption{caption-side:top;text-align:left;font-size:14px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--bg-deep);font-weight:800;font-size:13px;letter-spacing:.04em}
+td{color:var(--ink-dim)}
+td b{color:var(--ink);font-weight:700}
+col.yes{width:22%}col.no{width:22%}col.why{width:56%}
+
+/* ===== 四主题 ===== */
+.theme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media (max-width:820px){.theme-grid{grid-template-columns:1fr}}
+.tcard{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column}
+.tcard-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px 12px}
+.tname{font-weight:900;font-size:20px}
+.tswatch{display:flex;gap:8px;align-items:center}
+.sw{width:34px;height:34px;border-radius:9px;border:1px solid rgba(247,241,227,.25)}
+.sw.r{border-radius:50%}
+.tcard-body{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 6px;flex:1}
+.timg{border-radius:12px;border:1px solid var(--line);overflow:hidden;background:var(--bg-deep)}
+.timg img{width:100%;height:100%;object-fit:cover;aspect-ratio:9/16}
+.timg figcaption{font-size:11.5px;color:var(--ink-dim);text-align:center;padding:7px 4px}
+.tmeta{padding:12px 20px 18px;font-size:12.8px;color:var(--ink-dim);display:flex;gap:18px;flex-wrap:wrap}
+.tmeta b{color:var(--ink)}
+
+/* ===== 图标演进 ===== */
+.evo{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+@media (max-width:760px){.evo{grid-template-columns:repeat(2,1fr)}}
+.evo-item{text-align:center;border:1px solid var(--line);border-radius:var(--r-md);padding:18px 10px;background:var(--bg-card)}
+.evo-item img{width:88px;height:88px;border-radius:21%;margin:0 auto 12px;object-fit:cover;border:2px solid rgba(247,241,227,.2)}
+.evo-item b{display:block;font-size:14.5px}
+.evo-item span{font-size:12px;color:var(--ink-dim);line-height:1.5;display:block}
+.evo-item .mark{display:inline-block;margin-top:8px;font-size:11px;border-radius:6px;padding:1px 8px;letter-spacing:.06em}
+.evo-item .mark.now{background:var(--accent);color:#0D1626;font-weight:800}
+.evo-item .mark.skip{color:var(--ink-dim);border:1px solid var(--line-strong)}
+.evo-item.current{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,90,54,.16)}
+
+/* ===== 版本时间轴 ===== */
+.tl{--date:110px;--axis:24px;--gap:16px;margin-top:14px;position:relative;
+  background-image:linear-gradient(var(--line-strong),var(--line-strong));
+  background-size:2px 100%;background-repeat:no-repeat;
+  background-position:calc(var(--date) + var(--gap) + var(--axis)/2 - 1px) 0}
+.t-item{display:grid;grid-template-columns:var(--date) var(--axis) 1fr;column-gap:var(--gap);padding:11px 0;position:relative}
+.t-time{font-weight:800;font-size:13.5px;color:var(--star);text-align:right;padding-top:2px;font-variant-numeric:tabular-nums}
+.t-dot{justify-self:center;width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:6px;position:relative;z-index:1}
+.t-body h4{font-size:15.5px;font-weight:800}
+.t-body p{font-size:13.2px;color:var(--ink-dim)}
+.t-body .badge{display:inline-block;font-size:11px;color:var(--star);border:1px solid rgba(255,201,60,.35);border-radius:6px;padding:0 7px;margin-left:8px;vertical-align:2px}
+@media (max-width:640px){
+  .tl{background-position:12px 0}
+  .t-item{grid-template-columns:1fr;padding:13px 0 13px 30px;position:relative}
+  .t-time{text-align:left}
+  .t-dot{position:absolute;left:7px;top:21px;margin:0}
+}
+
+/* ===== 技术 ===== */
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+@media (max-width:820px){.tech-grid{grid-template-columns:1fr}}
+.tech{border:1px solid var(--line);border-radius:var(--r-md);padding:16px 16px}
+.tech b{display:block;font-size:14.5px;margin-bottom:4px}
+.tech span{font-size:12.8px;color:var(--ink-dim)}
+.db-note{font-size:12.5px;color:var(--ink-dim);margin-top:10px}
+
+/* ===== 隐私 / 页脚 ===== */
+.privacy{border:1.5px dashed var(--line-strong);border-radius:var(--r-lg);padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:700px){.privacy{grid-template-columns:1fr}}
+.pitem b{display:block;color:var(--accent);font-size:15px;margin-bottom:4px}
+.pitem p{font-size:13.5px;color:var(--ink-dim)}
+.footer{border-top:1px solid var(--line);padding:34px 0 48px;color:var(--ink-dim);font-size:13px;text-align:center}
+.footer b{color:var(--ink)}
+
+/* 滚动揭示 */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* 演示操作行 */
+.demo-ops{margin-top:12px;text-align:right}
+
+/* ===== 实际使用界面（手机壳） ===== */
+.phones{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px}
+@media (max-width:1060px){.phones{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.phones{grid-template-columns:1fr}}
+.phone-ui{width:100%;max-width:248px;margin:0 auto;border-radius:34px;background:#0F141C;padding:9px;box-shadow:0 18px 44px rgba(0,0,0,.42)}
+.pu-bar{display:flex;justify-content:space-between;align-items:center;padding:5px 13px 7px;color:#fff;font-size:10.5px;font-weight:600;border-radius:25px 25px 0 0}
+.pu-ic{display:flex;align-items:center;gap:4px}
+.pu-ic i{display:inline-block;width:9px;height:9px;border-radius:2px;background:#fff}
+.pu-ic i.o{width:3px;background:transparent;border:1.5px solid #fff}
+.pu-ic i.sig{width:13px;height:9px;background:transparent;border:1.5px solid #fff;border-radius:2px}
+.pu-screen{position:relative;border-radius:25px;overflow:hidden;background-color:var(--pu-bg,#F5F6F8);background-image:var(--pu-bgimg,none);background-size:cover;background-position:center;padding:13px 11px 14px;font-family:-apple-system,"Segoe UI",Roboto,sans-serif}
+.pu-brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.pu-sub{display:block;font-size:7.5px;font-weight:700;letter-spacing:.26em;color:var(--pu-accent)}
+.pu-brand b{display:block;font-size:15px;color:var(--pu-text)}
+.pu-line{display:block;width:22px;height:2.5px;background:var(--pu-accent);margin-top:4px}
+.pu-theme{font-size:9.5px;padding:3px 9px;border-radius:11px;border:1px solid var(--pu-accent);color:var(--pu-primary);white-space:nowrap}
+.pu-card{background:#fff;border-radius:11px;padding:9px 11px;margin-bottom:7px;box-shadow:0 1px 3px rgba(20,20,40,.08)}
+.pu-today{background:var(--pu-primary);color:#fff}
+.pu-today .pu-sub{color:var(--pu-accent)}
+.pu-today b.t{display:block;font-size:11.5px;margin:2px 0 7px}
+.pu-nums{display:flex;justify-content:space-between}
+.pu-nums>div{text-align:center;flex:1}
+.pu-nums b{display:block;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.pu-nums span{font-size:8px;letter-spacing:.08em;opacity:.85}
+.pu-nums>div.a b{color:var(--pu-accent)}
+.pu-divider{height:1px;background:rgba(255,255,255,.18);margin:8px 0}
+.pu-sstats{text-align:center;font-size:9px;font-weight:700;color:var(--pu-accent)}
+.pu-total{text-align:center;font-size:8px;opacity:.8;margin-top:3px}
+.pu-session b{display:block;font-size:10.5px;color:var(--pu-text)}
+.pu-ss{display:block;font-size:8px;color:var(--pu-secondary);margin:2px 0 7px}
+.pu-save{text-align:center;font-size:9.5px;font-weight:700;color:#fff;background:var(--pu-primary);border-radius:13px;padding:5px 0;margin-top:8px}
+.pu-menu{display:flex;flex-direction:column;padding:2px 11px}
+.pu-menu span{font-size:10px;color:var(--pu-primary);padding:7px 0;border-bottom:1px solid rgba(120,130,150,.16)}
+.pu-menu span:last-child{border-bottom:none}
+.pu-tips{border:1px dashed rgba(120,130,150,.4)}
+.pu-tips b{font-size:9.5px;color:var(--pu-text)}
+.pu-name{text-align:center;color:var(--ink-dim);font-size:12px;margin-top:10px}
+.pu-col{display:flex;flex-direction:column;gap:16px}
+.pu-subhead{display:flex;align-items:center;gap:7px;margin:2px 0 9px;font-size:12px;font-weight:700;color:var(--pu-text)}
+.pu-back{width:8px;height:8px;border-left:2px solid var(--pu-text);border-bottom:2px solid var(--pu-text);transform:rotate(45deg);flex:none}
+.pu-rows{background:#fff;border-radius:11px;padding:2px 11px;box-shadow:0 1px 3px rgba(20,20,40,.08)}
+.pu-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(120,130,150,.14);font-size:9px;color:var(--pu-text)}
+.pu-row:last-child{border-bottom:none}
+.pu-row .d{color:var(--pu-secondary)}
+.pu-row b{color:var(--pu-primary);font-variant-numeric:tabular-nums}
+
+/* 演示脉冲 */
+.pulse.go{transform:scale(1.5);transition:transform .3s ease-out}
+</style>
+</head>
+<body>
+
+<!-- ===== 首屏 ===== -->
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+    <div class="ray a" style="--a:-18deg"></div><div class="ray b" style="--a:12deg"></div><div class="ray c" style="--a:44deg"></div>
+    <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div><div class="dot d4"></div>
+  </div>
+  <div class="hero-inner wrap">
+    <span class="hero-tag">
+      <svg class="ic ic-star" viewBox="0 0 24 24" width="14" height="14"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+      Android · 无障碍统计工具
+    </span>
+    <div class="hero-icon"><img src="assets/icon_heart_nobeam.png" alt="手机之问图标：黑金爱心"></div>
+    <div class="hero-title">
+      <h1 class="ml ml-big ml-outline">手机之问</h1>
+      <div class="stroke">？</div>
+    </div>
+    <p class="hero-quote">每天，你的手机都在问你：<em>今天，你点了几次？</em></p>
+    <div class="hero-stats">
+      <div class="hs"><b>22</b><span>版本迭代</span></div>
+      <div class="hs"><b>4</b><span>套主题</span></div>
+      <div class="hs"><b>3</b><span>统计口径</span></div>
+      <div class="hs"><b>8:00</b><span>每日早报</span></div>
+    </div>
+    <div class="hero-scroll">向下滚动 ▼</div>
+  </div>
+</header>
+
+<!-- ===== 创意故事 ===== -->
+<section class="sec" id="story">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">01</span>
+      <h2 class="sec-title">它为什么存在</h2>
+    </div>
+    <p class="sec-sub">一个「讨厌手机的人」做的统计 App：先承认自己点得太多了，再把它变成一个能看懂的数学事实。</p>
+    <div class="story-grid">
+      <div class="story-quote">
+        「我每天点手机的次数太多了，<b>所以我要测一下每天到底点多少次</b>。所以名字叫手机之问。」
+      </div>
+      <div class="story-why">
+        <div class="why"><b>承认问题</b><span>先把「点了很多次」变成一个真实的数字。</span></div>
+        <div class="why"><b>看见频率</b><span>点击、滑动分别记录，碰屏为两者之和，知道每天到底点多少次。</span></div>
+        <div class="why"><b>每天一问</b><span>次日早报推送昨日战报，附一句温和的提醒——不是批评，是问候。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 功能亮点 ===== -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">02</span>
+      <h2 class="sec-title">五大功能</h2>
+    </div>
+    <div class="cards feat-grid">
+      <div class="c">
+        <div class="feat-top">
+          <svg class="ic ic-acc" viewBox="0 0 24 24"><path d="M4 12c4-6 12-6 16 0M7 9.5c2.5-3.8 7.5-3.8 10 0M10 7.5c1.2-1.9 3.8-1.9 5 0"/></svg>
+          <span class="num">01</span>
+        </div>
+        <h3>三口径统计</h3>
+        <p>点击、滑动分别计数，碰屏自动等于两者之和，三种数字按天存档。</p>
+        <span class="feat-tag">点击 / 滑动 / 碰屏</span>
+      </div>
+      <div class="c">
+        <div class="feat-top">
+          <svg class="ic ic-acc" viewBox="0 0 24 24"><path d="M4 19V10m5 9V5m5 14v-7m5 7V8"/></svg>
+          <span class="num">02</span>
+        </div>
+        <h3>今日 App 排行</h3>
+        <p>按应用统计今天的点击与滑动，看看时间究竟点进了哪些 App。</p>
+        <span class="feat-tag">应用维度</span>
+      </div>
+      <div class="c">
+        <div class="feat-top">
+          <svg class="ic ic-acc" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+          <span class="num">03</span>
+        </div>
+        <h3>手动存档</h3>
+        <p>每段使用可以随时保存成一条记录，方便对比不同时段的点屏强度。</p>
+        <span class="feat-tag">会话记录</span>
+      </div>
+      <div class="c">
+        <div class="feat-top">
+          <svg class="ic ic-acc" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14M4 4l2 2m12 12l2 2M20 4l-2 2M6 18l-2 2"/></svg>
+          <span class="num">04</span>
+        </div>
+        <h3>每日早报</h3>
+        <p>每天 8:00 推送一条状态栏通知：昨日点击 / 滑动 / 总次数 + 一句温馨建议。</p>
+        <span class="feat-tag">状态栏通知</span>
+      </div>
+      <div class="c">
+        <div class="feat-top">
+          <svg class="ic ic-acc" viewBox="0 0 24 24"><path d="M12 3l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+          <span class="num">05</span>
+        </div>
+        <h3>隐私自证</h3>
+        <p>统计原理写进 App 内：系统广播一声、App 听见就 +1，不读屏、不上传、纯本地。</p>
+        <span class="feat-tag">本地存储</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 交互演示 ===== -->
+<section class="sec" id="demo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">03</span>
+      <h2 class="sec-title">点一下，它就 +1</h2>
+      <span class="sec-sub" style="margin-left:auto">体验区：数字只存在于这个页面</span>
+    </div>
+    <div class="demo-wrap">
+      <div class="rv">
+        <div class="phone">
+          <div class="p-screen" id="phoneScreen" role="button" aria-label="模拟屏幕，点击计数" tabindex="0">
+            <div class="pulse"></div>
+            <div class="p-num" id="pNum">0</div>
+            <div class="p-unit">次点击</div>
+            <div class="p-tip">点一下屏幕试试</div>
+          </div>
+          <div class="p-name">手机之问 · 模拟屏</div>
+        </div>
+      </div>
+      <div class="demo-panel rv">
+        <h3>三种触摸，三个口径</h3>
+        <p class="hint">这就是 App 的工作方式：系统广播一声，App 听见就 +1。下面的按钮帮你模拟。</p>
+        <div class="meter"><span class="k">点击</span><span class="v c" id="vClick">0</span><span class="ops"><button class="mbtn" id="bClick" type="button">+1 点击</button></span></div>
+        <div class="meter"><span class="k">滑动</span><span class="v s" id="vSwipe">0</span><span class="ops"><button class="mbtn" id="bSwipe" type="button">+1 滑动</button></span></div>
+        <div class="meter"><span class="k">碰屏</span><span class="v t" id="vTouch">0</span><span class="ops"><button class="mbtn" id="bTouch" type="button">+1 碰屏</button></span></div>
+        <div class="demo-ops"><button class="mbtn zero" id="bZero" type="button">清零全部数字</button></div>
+        <p class="demo-note">点击、滑动分别 +1；碰屏 = 点击 + 滑动之和，随两者联动同步 +1。界面只有这三个数字，不另设「合计」行。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 统计原理 ===== -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">04</span>
+      <h2 class="sec-title">统计原理：广播一声，听见就 +1</h2>
+    </div>
+    <p class="sec-sub rv">全程不监视你的屏幕内容，只看系统发出的事件广播——「一次触摸被处理完」，就记一次。</p>
+    <div class="flow rv">
+      <div class="fstep"><span class="no">STEP 1</span><b>你在屏幕上点了一下</b><span>系统收到触摸事件，并判定这是一次点击 / 一次滑动。</span></div>
+      <div class="farrow"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M4 12h15M13.5 5.5 20 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="fstep"><span class="no">STEP 2</span><b>系统广播一声</b><span>对已开启的服务广播「这次交互的类型与来源应用」。</span></div>
+      <div class="farrow"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M4 12h15M13.5 5.5 20 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="fstep"><span class="no">STEP 3</span><b>App 听见就 +1</b><span>对应口径立即写入本机 SQLite 数据库，按天分行。</span></div>
+    </div>
+    <div class="rv">
+      <div class="table-scroll">
+        <table>
+          <caption>哪些操作会被记录？以实测为准的口径表</caption>
+          <colgroup><col class="yes"><col class="no"><col class="why"></colgroup>
+          <thead><tr><th>计入</th><th>不计入</th><th>原因与说明</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>点击</b>（按钮、图标、列表项等）</td>
+              <td>打字时的字符按键</td>
+              <td>系统只在「一个控件被判定完成一次点击」时广播；输入法按键属自绘界面，多数不产生标准广播——所以打字几乎不计入，这是我实测到的现象。</td>
+            </tr>
+            <tr>
+              <td><b>滑动</b>（滚动手势本身）</td>
+              <td>刷视频、刷信息流时的内容滚动</td>
+              <td>系统广播的是「滚动开始」事件；视频 App 等内容多在自己内部处理滚动、不走标准广播，因此刷视频的滑动不计入——同样与我实测一致。</td>
+            </tr>
+            <tr>
+              <td><b>碰屏</b>（点击 + 滑动之和）</td>
+              <td>—</td>
+              <td>点击、滑动分别独立计数；碰屏为两者之和，随点击 / 滑动联动 +1。界面只显示这三个数字，不单设「合计」行。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="db-note">隐私边界：App 不读取屏幕内容、不录制、不上传任何事件明细；计数结果只写在本机数据库里。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 四主题 ===== -->
+<section class="sec" id="themes">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">05</span>
+      <h2 class="sec-title">四套主题，四种性格</h2>
+    </div>
+    <p class="sec-sub rv">每套主题不只是换颜色——还有整页背景插画、专属主色与本色点击涟漪。</p>
+    <div class="theme-grid">
+      <div class="tcard rv">
+        <div class="tcard-head"><span class="tname">商务藏青</span><span class="tswatch"><span class="sw" style="background:#1B3A5C"></span><span class="sw" style="background:#BFA15F"></span><span class="sw r" style="background:#1B3A5C"></span></span></div>
+        <div class="tcard-body">
+          <figure class="timg"><div style="background:linear-gradient(160deg,#F5F6F8,#E3E8EF);width:100%;height:100%;aspect-ratio:9/16"></div><figcaption>主页 · 纯色底</figcaption></figure>
+          <figure class="timg"><div style="background:linear-gradient(160deg,#E3E8EF,#F5F6F8);width:100%;height:100%;aspect-ratio:9/16"></div><figcaption>子页 · 纯色底</figcaption></figure>
+        </div>
+        <div class="tmeta"><span>主色 <b>#1B3A5C</b></span><span>点缀 <b>#BFA15F</b></span><span>涟漪 <b>藏青本色</b></span></div>
+      </div>
+      <div class="tcard rv">
+        <div class="tcard-head"><span class="tname">Hello Kitty</span><span class="tswatch"><span class="sw" style="background:#B05A96"></span><span class="sw" style="background:#F5A7C8"></span><span class="sw r" style="background:#B05A96"></span></span></div>
+        <div class="tcard-body">
+          <figure class="timg"><img src="assets/bg_kitty_main.jpg" alt="Hello Kitty 主题主页背景"><figcaption>主页背景</figcaption></figure>
+          <figure class="timg"><img src="assets/bg_kitty_alt.jpg" alt="Hello Kitty 主题子页背景"><figcaption>子页背景</figcaption></figure>
+        </div>
+        <div class="tmeta"><span>主色 <b>#B05A96</b></span><span>点缀 <b>#F5A7C8</b></span><span>涟漪 <b>粉紫本色</b></span></div>
+      </div>
+      <div class="tcard rv">
+        <div class="tcard-head"><span class="tname">原神</span><span class="tswatch"><span class="sw" style="background:#3D7BBD"></span><span class="sw" style="background:#D6A53F"></span><span class="sw r" style="background:#3D7BBD"></span></span></div>
+        <div class="tcard-body">
+          <figure class="timg"><img src="assets/bg_genshin_main.jpg" alt="原神主题主页背景：甘雨雪山"><figcaption>主页 · 甘雨雪山</figcaption></figure>
+          <figure class="timg"><img src="assets/bg_genshin_alt.jpg" alt="原神主题子页背景：金色大树"><figcaption>子页 · 金色大树</figcaption></figure>
+        </div>
+        <div class="tmeta"><span>主色 <b>#3D7BBD</b></span><span>点缀 <b>#D6A53F</b></span><span>涟漪 <b>天青蓝本色</b></span></div>
+      </div>
+      <div class="tcard rv">
+        <div class="tcard-head"><span class="tname">小马宝莉</span><span class="tswatch"><span class="sw" style="background:#9B6BB8"></span><span class="sw" style="background:#F2B64E"></span><span class="sw r" style="background:#9B6BB8"></span></span></div>
+        <div class="tcard-body">
+          <figure class="timg"><img src="assets/bg_pony_main.jpg" alt="小马宝莉主题主页背景：头像壁纸"><figcaption>主页 · 头像壁纸</figcaption></figure>
+          <figure class="timg"><img src="assets/bg_pony_alt.jpg" alt="小马宝莉主题子页背景：星空群像"><figcaption>子页 · 星空群像</figcaption></figure>
+        </div>
+        <div class="tmeta"><span>主色 <b>#9B6BB8</b></span><span>点缀 <b>#F2B64E</b></span><span>涟漪 <b>薰衣草紫本色</b></span></div>
+      </div>
+    </div>
+    <p class="db-note rv" style="margin-top:16px">注：商务藏青为纯色底（无自绘水印）；三套官方插画主题的主页与子页各配不同背景图。</p>
+  </div>
+</section>
+
+<!-- ===== 实际使用界面 ===== -->
+<section class="sec" id="usage">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">06</span>
+      <h2 class="sec-title">实际使用界面</h2>
+    </div>
+    <p class="sec-sub rv">主界面从上到下依次是：品牌与「换主题」、今日统计主色卡（点击 / 滑动 / 碰屏幕）、当前段、入口菜单、统计原理说明。以下四台手机展示四套主题在主界面的真实样子（数字为示例；界面按 App 实际布局与素材还原，已开启统计服务状态）。</p>
+    <div class="phones">
+      <div class="pu-col">
+      <div class="phone-ui rv" style="--pu-primary:#1B3A5C;--pu-accent:#BFA15F;--pu-text:#23272F;--pu-secondary:#8A93A5;--pu-bg:#F5F6F8">
+        <div class="pu-bar" style="background:#1B3A5C"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-brand"><div><span class="pu-sub">TAP COUNTER</span><b>手机之问</b><i class="pu-line"></i></div><span class="pu-theme">换主题</span></div>
+          <div class="pu-card pu-today">
+            <span class="pu-sub">TODAY REPORT</span><b class="t">今日统计</b>
+            <div class="pu-nums"><div><b>328</b><span>点击</span></div><div><b>156</b><span>滑动</span></div><div class="a"><b>484</b><span>碰屏幕</span></div></div>
+            <div class="pu-divider"></div><div class="pu-sstats">亮屏 12 次 · 累计 68 分</div><div class="pu-total">累计（全部时间）</div>
+          </div>
+          <div class="pu-card pu-session">
+            <b>当前段（手动分段统计）</b><span class="pu-ss">本段开始 08:15</span>
+            <div class="pu-nums"><div><b>86</b><span>点击</span></div><div><b>41</b><span>滑动</span></div><div><b>127</b><span>碰屏幕</span></div></div>
+            <div class="pu-save">保存本段并重新开始</div>
+          </div>
+          <div class="pu-card pu-menu"><span>查看近 30 天记录</span><span>今日 App 排行</span><span>查看存档记录</span></div>
+          <div class="pu-card pu-tips"><b>统计原理与隐私说明</b></div>
+        </div>
+        <div class="pu-name">商务藏青 · 主页</div>
+      </div>
+      <div class="phone-ui rv" style="--pu-primary:#1B3A5C;--pu-accent:#BFA15F;--pu-text:#23272F;--pu-secondary:#8A93A5;--pu-bg:#F5F6F8">
+        <div class="pu-bar" style="background:#1B3A5C"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-subhead"><i class="pu-back"></i>近 30 天记录</div>
+          <div class="pu-rows">
+            <div class="pu-row"><span class="d">10月30日</span><b>328 · 156 · 484</b></div>
+            <div class="pu-row"><span class="d">10月29日</span><b>305 · 141 · 446</b></div>
+            <div class="pu-row"><span class="d">10月28日</span><b>271 · 168 · 439</b></div>
+          </div>
+        </div>
+        <div class="pu-name">商务藏青 · 子页</div>
+      </div>
+    </div>
+      <div class="pu-col">
+      <div class="phone-ui rv" style="--pu-primary:#B05A96;--pu-accent:#F5A7C8;--pu-text:#4A2E44;--pu-secondary:#A97E9A;--pu-bg:#FFF7F8;--pu-bgimg:url('assets/bg_kitty_main.jpg')">
+        <div class="pu-bar" style="background:#B05A96"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-brand"><div><span class="pu-sub">TAP COUNTER</span><b>手机之问</b><i class="pu-line"></i></div><span class="pu-theme">换主题</span></div>
+          <div class="pu-card pu-today">
+            <span class="pu-sub">TODAY REPORT</span><b class="t">今日统计</b>
+            <div class="pu-nums"><div><b>328</b><span>点击</span></div><div><b>156</b><span>滑动</span></div><div class="a"><b>484</b><span>碰屏幕</span></div></div>
+            <div class="pu-divider"></div><div class="pu-sstats">亮屏 12 次 · 累计 68 分</div><div class="pu-total">累计（全部时间）</div>
+          </div>
+          <div class="pu-card pu-session">
+            <b>当前段（手动分段统计）</b><span class="pu-ss">本段开始 08:15</span>
+            <div class="pu-nums"><div><b>86</b><span>点击</span></div><div><b>41</b><span>滑动</span></div><div><b>127</b><span>碰屏幕</span></div></div>
+            <div class="pu-save">保存本段并重新开始</div>
+          </div>
+          <div class="pu-card pu-menu"><span>查看近 30 天记录</span><span>今日 App 排行</span><span>查看存档记录</span></div>
+          <div class="pu-card pu-tips"><b>统计原理与隐私说明</b></div>
+        </div>
+        <div class="pu-name">Hello Kitty · 主页</div>
+      </div>
+      <div class="phone-ui rv" style="--pu-primary:#B05A96;--pu-accent:#F5A7C8;--pu-text:#4A2E44;--pu-secondary:#A97E9A;--pu-bg:#FFF7F8;--pu-bgimg:url('assets/bg_kitty_alt.jpg')">
+        <div class="pu-bar" style="background:#B05A96"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-subhead"><i class="pu-back"></i>近 30 天记录</div>
+          <div class="pu-rows">
+            <div class="pu-row"><span class="d">10月30日</span><b>328 · 156 · 484</b></div>
+            <div class="pu-row"><span class="d">10月29日</span><b>305 · 141 · 446</b></div>
+            <div class="pu-row"><span class="d">10月28日</span><b>271 · 168 · 439</b></div>
+          </div>
+        </div>
+        <div class="pu-name">Hello Kitty · 子页</div>
+      </div>
+    </div>
+      <div class="pu-col">
+      <div class="phone-ui rv" style="--pu-primary:#3D7BBD;--pu-accent:#D6A53F;--pu-text:#22304A;--pu-secondary:#6E86A8;--pu-bg:#F5F7FB;--pu-bgimg:url('assets/bg_genshin_main.jpg')">
+        <div class="pu-bar" style="background:#3D7BBD"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-brand"><div><span class="pu-sub">TAP COUNTER</span><b>手机之问</b><i class="pu-line"></i></div><span class="pu-theme">换主题</span></div>
+          <div class="pu-card pu-today">
+            <span class="pu-sub">TODAY REPORT</span><b class="t">今日统计</b>
+            <div class="pu-nums"><div><b>328</b><span>点击</span></div><div><b>156</b><span>滑动</span></div><div class="a"><b>484</b><span>碰屏幕</span></div></div>
+            <div class="pu-divider"></div><div class="pu-sstats">亮屏 12 次 · 累计 68 分</div><div class="pu-total">累计（全部时间）</div>
+          </div>
+          <div class="pu-card pu-session">
+            <b>当前段（手动分段统计）</b><span class="pu-ss">本段开始 08:15</span>
+            <div class="pu-nums"><div><b>86</b><span>点击</span></div><div><b>41</b><span>滑动</span></div><div><b>127</b><span>碰屏幕</span></div></div>
+            <div class="pu-save">保存本段并重新开始</div>
+          </div>
+          <div class="pu-card pu-menu"><span>查看近 30 天记录</span><span>今日 App 排行</span><span>查看存档记录</span></div>
+          <div class="pu-card pu-tips"><b>统计原理与隐私说明</b></div>
+        </div>
+        <div class="pu-name">原神 · 主页</div>
+      </div>
+      <div class="phone-ui rv" style="--pu-primary:#3D7BBD;--pu-accent:#D6A53F;--pu-text:#22304A;--pu-secondary:#6E86A8;--pu-bg:#F5F7FB;--pu-bgimg:url('assets/bg_genshin_alt.jpg')">
+        <div class="pu-bar" style="background:#3D7BBD"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-subhead"><i class="pu-back"></i>近 30 天记录</div>
+          <div class="pu-rows">
+            <div class="pu-row"><span class="d">10月30日</span><b>328 · 156 · 484</b></div>
+            <div class="pu-row"><span class="d">10月29日</span><b>305 · 141 · 446</b></div>
+            <div class="pu-row"><span class="d">10月28日</span><b>271 · 168 · 439</b></div>
+          </div>
+        </div>
+        <div class="pu-name">原神 · 子页</div>
+      </div>
+    </div>
+      <div class="pu-col">
+      <div class="phone-ui rv" style="--pu-primary:#9B6BB8;--pu-accent:#F2B64E;--pu-text:#4A3A4E;--pu-secondary:#A68BA8;--pu-bg:#FFFAF4;--pu-bgimg:url('assets/bg_pony_main.jpg')">
+        <div class="pu-bar" style="background:#9B6BB8"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-brand"><div><span class="pu-sub">TAP COUNTER</span><b>手机之问</b><i class="pu-line"></i></div><span class="pu-theme">换主题</span></div>
+          <div class="pu-card pu-today">
+            <span class="pu-sub">TODAY REPORT</span><b class="t">今日统计</b>
+            <div class="pu-nums"><div><b>328</b><span>点击</span></div><div><b>156</b><span>滑动</span></div><div class="a"><b>484</b><span>碰屏幕</span></div></div>
+            <div class="pu-divider"></div><div class="pu-sstats">亮屏 12 次 · 累计 68 分</div><div class="pu-total">累计（全部时间）</div>
+          </div>
+          <div class="pu-card pu-session">
+            <b>当前段（手动分段统计）</b><span class="pu-ss">本段开始 08:15</span>
+            <div class="pu-nums"><div><b>86</b><span>点击</span></div><div><b>41</b><span>滑动</span></div><div><b>127</b><span>碰屏幕</span></div></div>
+            <div class="pu-save">保存本段并重新开始</div>
+          </div>
+          <div class="pu-card pu-menu"><span>查看近 30 天记录</span><span>今日 App 排行</span><span>查看存档记录</span></div>
+          <div class="pu-card pu-tips"><b>统计原理与隐私说明</b></div>
+        </div>
+        <div class="pu-name">小马宝莉 · 主页</div>
+      </div>
+      <div class="phone-ui rv" style="--pu-primary:#9B6BB8;--pu-accent:#F2B64E;--pu-text:#4A3A4E;--pu-secondary:#A68BA8;--pu-bg:#FFFAF4;--pu-bgimg:url('assets/bg_pony_alt.jpg')">
+        <div class="pu-bar" style="background:#9B6BB8"><span>9:41</span><span class="pu-ic"><i class="sig"></i><i></i><i class="o"></i></span></div>
+        <div class="pu-screen">
+          <div class="pu-subhead"><i class="pu-back"></i>近 30 天记录</div>
+          <div class="pu-rows">
+            <div class="pu-row"><span class="d">10月30日</span><b>328 · 156 · 484</b></div>
+            <div class="pu-row"><span class="d">10月29日</span><b>305 · 141 · 446</b></div>
+            <div class="pu-row"><span class="d">10月28日</span><b>271 · 168 · 439</b></div>
+          </div>
+        </div>
+        <div class="pu-name">小马宝莉 · 子页</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 图标演进 ===== -->
+<section class="sec" id="icon">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">07</span>
+      <h2 class="sec-title">一枚图标的演进</h2>
+    </div>
+    <p class="sec-sub rv">从「黑金高级感」出发，走过方向 A / B、黑金手指与漫画问号，最终回到黑金爱心：
+      这次是去掉左上光影后的最终定稿，软件的名字就叫手机之问。</p>
+    <div class="evo">
+      <div class="evo-item rv"><img src="assets/icon_heart.png" alt="黑金爱心图标"><b>黑金爱心</b><span>v2.0 曾装机<br>黑金 VIP 质感方向</span><span class="mark skip">初代</span></div>
+      <div class="evo-item rv"><img src="assets/icon_ask_a.png" alt="点痕之问图标"><b>点痕之问</b><span>方向 A 候选<br>巨大问号 + 落点涟漪</span><span class="mark skip">未采用</span></div>
+      <div class="evo-item rv"><img src="assets/icon_ask_b.png" alt="屏问图标"><b>屏问</b><span>方向 B 候选<br>手机轮廓 + 屏内问号</span><span class="mark skip">未采用</span></div>
+      <div class="evo-item rv"><img src="assets/icon_blackgold_tap.png" alt="黑金手指图标"><b>黑金手指</b><span>候选方向<br>手指点按，金色涟漪</span><span class="mark skip">未采用</span></div>
+      <div class="evo-item rv"><img src="assets/icon_final.png" alt="漫画问号图标"><b>漫画问号</b><span>v2.0.4 曾装机<br>手指狂点，炸出问号</span><span class="mark skip">已换回</span></div>
+      <div class="evo-item current rv"><img src="assets/icon_heart_nobeam.png" alt="黑金爱心去光影定稿图标"><b>黑金爱心·去光影</b><span>v2.0.5 定稿装机<br>黑金爱心，去掉左上光影</span><span class="mark now">当前版本</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 版本时间轴 ===== -->
+<section class="sec" id="history">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">08</span>
+      <h2 class="sec-title">版本时间轴</h2>
+      <span class="sec-sub" style="margin-left:auto">v1.0 → v2.0.5，共 23 个版本</span>
+    </div>
+    <div class="tl rv">
+      <div class="t-item"><div class="t-time">v1.0</div><div class="t-dot"></div><div class="t-body"><h4>起点</h4><p>无障碍服务监听点击，SQLite 按天分行，30 天柱状图。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.1</div><div class="t-dot"></div><div class="t-body"><h4>三口径诞生</h4><p>点击 / 滑动 / 碰屏分开统计，支持手动存档，取消延迟改为立即写入。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.2</div><div class="t-dot"></div><div class="t-body"><h4>看得见 App 排行</h4><p>今日 App 排行 + 亮屏次数 / 屏幕使用时长。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.3</div><div class="t-dot"></div><div class="t-body"><h4>商务风 UI</h4><p>藏青 #1B3A5C + 香槟金 #BFA15F，卡片描边分层。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.4</div><div class="t-dot"></div><div class="t-body"><h4>主题与图标</h4><p>三主题内置切换 + 高级图标（藏青渐变方块 + 金色涟漪）。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.5</div><div class="t-dot"></div><div class="t-body"><h4>早报与自证</h4><p>每日 8:00 早报通知；首页加入统计原理与隐私说明；移除 30 天柱状图。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.6</div><div class="t-dot"></div><div class="t-body"><h4>做减法</h4><p>删顶部三切换按钮、「今天」标注，主题只保留商务藏青。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.7</div><div class="t-dot"></div><div class="t-body"><h4>四主题回归</h4><p>商务藏青 / Hello Kitty / 原神 / 小马宝莉，恢复「换主题」入口。</p></div></div>
+      <div class="t-item"><div class="t-time">v1.9</div><div class="t-dot"></div><div class="t-body"><h4>官方素材替换</h4><p>全面改用官方插画做页面背景，自绘装饰全部删除。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.0</div><div class="t-dot"></div><div class="t-body"><h4>更名「手机之问」</h4><p>软件正式改名手机之问，包名不变；黑金爱心图标。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.0.1</div><div class="t-dot"></div><div class="t-body"><h4>素材换新</h4><p>小马宝莉、原神全部换新背景；图标回旧版。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.0.2</div><div class="t-dot"></div><div class="t-body"><h4>干净与动效</h4><p>移除商务藏青自绘水印；全软件按钮与卡片加上点击涟漪。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.0.3</div><div class="t-dot"></div><div class="t-body"><h4>涟漪本色化</h4><p>涟漪颜色改为各主题主色（藏青 / 粉紫 / 天青蓝 / 薰衣草紫）。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.0.4</div><div class="t-dot"></div><div class="t-body"><h4>漫画问号装机</h4><p>漫画问号图标装机：手指狂点屏幕，炸出问号——「点得越多，问号越大」。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.0.5</div><div class="t-dot"></div><div class="t-body"><h4>图标最终定稿<span class="badge">当前</span></h4><p>黑金爱心·去光影版装机：黑金 VIP 质感回归，移除左上光影，画面更干净。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 技术架构 ===== -->
+<section class="sec" id="tech">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">09</span>
+      <h2 class="sec-title">技术架构</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech rv"><b>Kotlin · Android</b><span>原生开发，minSdk 24（Android 7.0+），targetSdk 35，包名 com.tapcounter.app</span></div>
+      <div class="tech rv"><b>无障碍服务</b><span>TapCounterService 监听点击与滚动手势广播，事件包名归因到具体应用。</span></div>
+      <div class="tech rv"><b>SQLite 本地库</b><span>DB version 3，五张表按天分行，数据只存本机。</span></div>
+      <div class="tech rv"><b>状态栏通知</b><span>DailyReportReceiver 每日 8:00 推送昨日三数字 + 温馨话术。</span></div>
+      <div class="tech rv"><b>Material 主题切换</b><span>四套主题：14 个主题色 + 背景图 + 本色涟漪，运行时可切换。</span></div>
+      <div class="tech rv"><b>自适应图标</b><span>位图 adaptive 方案，五档密度 + 432px 前景，兼容 Android 8+。</span></div>
+    </div>
+    <div class="table-scroll rv">
+      <table>
+        <caption>数据库表结构（DB version 3）</caption>
+        <colgroup><col style="width:26%"><col style="width:44%"><col style="width:30%"></colgroup>
+        <thead><tr><th>表</th><th>字段</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>taps</td><td>date（主键）、clicks、swipes、touches</td><td>每天三口径总量</td></tr>
+          <tr><td>current_session</td><td>id、clicks、swipes、touches、start_time…</td><td>本段未存档计数</td></tr>
+          <tr><td>sessions</td><td>自增主键、三口径、起止时间…</td><td>手动存档的会话记录</td></tr>
+          <tr><td>app_taps</td><td>date + package（联合主键）、clicks、swipes</td><td>今日 App 排行</td></tr>
+          <tr><td>screen_stats</td><td>date（主键）、wake_count、active_seconds</td><td>亮屏次数与使用时长</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 隐私与版权 ===== -->
+<section class="sec" id="privacy">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">10</span>
+      <h2 class="sec-title">隐私与版权</h2>
+    </div>
+    <div class="privacy rv">
+      <div class="pitem"><b>不读屏</b><p>App 不获取屏幕内容、不截图、不录屏，只处理系统事件广播。</p></div>
+      <div class="pitem"><b>不上传</b><p>所有计数仅写入本机 SQLite，无账号、无云端同步、无任何网络上报。</p></div>
+      <div class="pitem"><b>覆盖安装不丢数据</b><p>同一签名证书持续升级，覆盖安装保留全部历史数据。</p></div>
+      <div class="pitem"><b>素材版权</b><p>主题插画均为官方图片，仅限个人本地使用，请勿外传或商用。</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><b>手机之问</b> · 一款统计你每天点了多少次手机的 Android 应用</p>
+    <p style="margin-top:6px">当前版本 v2.0.4 · 包名 com.tapcounter.app · 本页为产品介绍与开发文档</p>
+  </div>
+</footer>
+
+<script>
+// ===== 计数器演示 =====
+(function(){
+  var c=0,s=0,t=0;
+  function $(id){return document.getElementById(id)}
+  function repaint(){
+    $('vClick').textContent=c; $('vSwipe').textContent=s; $('vTouch').textContent=t;
+    $('pNum').textContent=c;
+  }
+  function pulse(){
+    var p=document.querySelector('.pulse');
+    p.classList.remove('go'); void p.offsetWidth; p.classList.add('go');
+    setTimeout(function(){p.classList.remove('go')},320);
+  }
+  $('phoneScreen').addEventListener('click',function(){c++;repaint();pulse()});
+  $('phoneScreen').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c++;repaint();pulse()}});
+  $('bClick').addEventListener('click',function(){c++;t++;repaint()});
+  $('bSwipe').addEventListener('click',function(){s++;t++;repaint()});
+  $('bTouch').addEventListener('click',function(){t++;repaint()});
+  $('bZero').addEventListener('click',function(){c=s=t=0;repaint()});
+})();
+// ===== 滚动揭示 =====
+(function(){
+  if(!('IntersectionObserver' in window)){var els=document.querySelectorAll('.rv');for(var i=0;i<els.length;i++){els[i].classList.add('on')}return}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+  },{threshold:.12});
+  var rvs=document.querySelectorAll('.rv');
+  for(var j=0;j<rvs.length;j++){io.observe(rvs[j])}
+})();
+</script>
+</body>
+</html>
