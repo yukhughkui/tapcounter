@@ -30,7 +30,7 @@
 
 | 版本 | 文件 |
 | --- | --- |
-| 最新 v2.0.5 | [apk/手机之问_v2.0.5.apk](apk/手机之问_v2.0.5.apk) |
+| 最新 v2.0.5 | [点此直接下载 APK](https://github.com/yukhughkui/tapcounter/releases/download/v2.0.5/tapcounter-v2.0.5.apk) |
 
 全部 23 个历史版本（v1.0 → v2.0.5）见 [apk/](apk/)，每个迭代版本都可下载安装体验。
 
