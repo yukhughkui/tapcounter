@@ -8,6 +8,12 @@
 
 ![手机之问图标](docs/icon_heart_nobeam.png)
 
+## 在线体验
+
+[点此打开「手机之问产品介绍」在线页面](https://yukhughkui.github.io/tapcounter/%E6%89%8B%E6%9C%BA%E4%B9%8B%E9%97%AE%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D.html)
+
+图文并茂的产品介绍、四套主题与全部版本演进，无需安装、点开即看。
+
 ## 功能
 
 - **三口径独立统计**：点击、滑动、碰屏分开计数；碰屏 = 点击与滑动之和。
