@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 小马宝莉主页背景：奶油底 + 星空紫粉六主角图（用户素材） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/pony_bg" />
+    <item
+        android:drawable="@drawable/bgimg_pony_main"
+        android:alpha="0.16" />
+</layer-list>

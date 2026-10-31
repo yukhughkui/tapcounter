@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 商务藏青背景：纯色底（自绘菱形水印已按用户要求移除） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/business_bg" />
+</layer-list>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="themePrimary" format="color" />
+    <attr name="themePrimaryDark" format="color" />
+    <attr name="themePrimaryLight" format="color" />
+    <attr name="themeAccent" format="color" />
+    <attr name="themeAccentSoft" format="color" />
+    <attr name="themeBg" format="reference" />
+    <attr name="themeBgHistory" format="reference" />
+    <attr name="themeBgRank" format="reference" />
+    <attr name="themeBgSessions" format="reference" />
+    <attr name="themeDecorIcon" format="reference" />
+    <attr name="themeCard" format="color" />
+    <attr name="themeCardBorder" format="color" />
+    <attr name="themeCardDivider" format="color" />
+    <attr name="themeTextPrimary" format="color" />
+    <attr name="themeTextSecondary" format="color" />
+    <attr name="themeCardOnDark" format="color" />
+    <attr name="themeChartBar" format="color" />
+    <attr name="themeChartToday" format="color" />
+</resources>

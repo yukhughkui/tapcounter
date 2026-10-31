@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 商务藏青 -->
+    <color name="business_primary">#1B3A5C</color>
+    <color name="business_primary_dark">#12263D</color>
+    <color name="business_primary_light">#E8EDF4</color>
+    <color name="business_accent">#BFA15F</color>
+    <color name="business_accent_soft">#F4EFE3</color>
+    <color name="business_bg">#F5F6F8</color>
+    <color name="business_card">#FFFFFF</color>
+    <color name="business_card_border">#E6E9EF</color>
+    <color name="business_card_divider">#33FFFFFF</color>
+    <color name="business_text_primary">#23272F</color>
+    <color name="business_text_secondary">#8A93A5</color>
+    <color name="business_card_on_dark">#CCFFFFFF</color>
+    <color name="business_chart_bar">#C3CFE0</color>
+    <color name="business_chart_today">#BFA15F</color>
+    <color name="business_ripple">#331B3A5C</color>
+
+    <!-- Hello Kitty（粉紫系） -->
+    <color name="kitty_primary">#B05A96</color>
+    <color name="kitty_primary_dark">#8A3F78</color>
+    <color name="kitty_primary_light">#F7E3F1</color>
+    <color name="kitty_accent">#F5A7C8</color>
+    <color name="kitty_accent_soft">#FDEFF5</color>
+    <color name="kitty_bg">#FFF7F8</color>
+    <color name="kitty_card">#FFFFFF</color>
+    <color name="kitty_card_border">#E8D0E4</color>
+    <color name="kitty_card_divider">#33FFFFFF</color>
+    <color name="kitty_text_primary">#4A2E44</color>
+    <color name="kitty_text_secondary">#A97E9A</color>
+    <color name="kitty_card_on_dark">#F9E8F4</color>
+    <color name="kitty_chart_bar">#F5C4CE</color>
+    <color name="kitty_chart_today">#F5A7C8</color>
+    <color name="kitty_ripple">#40B05A96</color>
+
+    <!-- 原神（天青蓝 + 岩金，与商务藏青明确区分） -->
+    <color name="genshin_primary">#3D7BBD</color>
+    <color name="genshin_primary_dark">#2A5A8A</color>
+    <color name="genshin_primary_light">#E3EEF9</color>
+    <color name="genshin_accent">#D6A53F</color>
+    <color name="genshin_accent_soft">#F6EBD3</color>
+    <color name="genshin_bg">#F5F7FB</color>
+    <color name="genshin_card">#FFFFFF</color>
+    <color name="genshin_card_border">#DCE7F2</color>
+    <color name="genshin_card_divider">#33FFFFFF</color>
+    <color name="genshin_text_primary">#22304A</color>
+    <color name="genshin_text_secondary">#6E86A8</color>
+    <color name="genshin_card_on_dark">#D9E4F5</color>
+    <color name="genshin_chart_bar">#C6D4EA</color>
+    <color name="genshin_chart_today">#D6A53F</color>
+    <color name="genshin_ripple">#403D7BBD</color>
+
+    <!-- 小马宝莉 -->
+    <color name="pony_primary">#9B6BB8</color>
+    <color name="pony_primary_dark">#6D4790</color>
+    <color name="pony_primary_light">#F0E7F7</color>
+    <color name="pony_accent">#F2B64E</color>
+    <color name="pony_accent_soft">#FBF0DC</color>
+    <color name="pony_bg">#FFFAF4</color>
+    <color name="pony_card">#FFFFFF</color>
+    <color name="pony_card_border">#EFE0D0</color>
+    <color name="pony_card_divider">#33FFFFFF</color>
+    <color name="pony_text_primary">#4A3A4E</color>
+    <color name="pony_text_secondary">#A68BA8</color>
+    <color name="pony_card_on_dark">#F3E8FA</color>
+    <color name="pony_chart_bar">#E3CEF0</color>
+    <color name="pony_chart_today">#F2B64E</color>
+    <color name="pony_ripple">#409B6BB8</color>
+
+    <color name="ic_launcher_background">#12263D</color>
+</resources>

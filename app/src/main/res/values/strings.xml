@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">手机之问</string>
+    <string name="brand_subtitle">TAP COUNTER</string>
+    <string name="switch_theme">换主题</string>
+    <string name="theme_dialog_title">选择主题</string>
+    <string name="cancel">取消</string>
+    <string name="theme_business">商务藏青</string>
+    <string name="theme_kitty">Hello Kitty</string>
+    <string name="theme_genshin">原神</string>
+    <string name="theme_pony">小马宝莉</string>
+    <string name="today_subtitle">TODAY REPORT</string>
+    <string name="history_subtitle">HISTORY</string>
+    <string name="sessions_subtitle">ARCHIVES</string>
+    <string name="rank_subtitle">APP RANKING</string>
+    <string name="service_name">手机之问统计服务</string>
+    <string name="accessibility_service_description">本服务用于统计你每天使用屏幕的次数：点击次数、滑动次数、碰屏幕次数。它只接收系统转发的操作事件用于计数，不会读取、上传或保存你的任何屏幕内容，所有数据仅保存在本机。</string>
+
+    <string name="service_status_on">统计服务运行中</string>
+    <string name="service_status_off">统计服务未开启</string>
+    <string name="enable_service">去开启统计</string>
+    <string name="check_again">重新检测</string>
+    <string name="view_history">查看近 30 天记录</string>
+    <string name="view_app_rank">今日 App 排行</string>
+    <string name="view_sessions">查看存档记录</string>
+    <string name="history_title">近 30 天记录</string>
+    <string name="app_rank_title">今日 App 排行</string>
+    <string name="sessions_title">存档记录</string>
+    <string name="no_sessions">还没有存档。点首页"保存本段"后，这里会按段显示。</string>
+    <string name="no_app_data">今天还没有统计，用一会儿手机再来看。</string>
+    <string name="no_data">暂无数据，开启服务后开始记录</string>
+    <string name="screen_stats">亮屏 0 次 · 累计 0 分</string>
+
+    <string name="today_title">今日统计</string>
+    <string name="clicks_label">点击</string>
+    <string name="swipes_label">滑动</string>
+    <string name="touches_label">碰屏幕</string>
+    <string name="total_label">累计（全部时间）</string>
+
+    <string name="session_title">当前段（手动分段统计）</string>
+    <string name="session_start">本段开始</string>
+    <string name="save_session">保存本段并重新开始</string>
+    <string name="session_saved">已保存本段，重新开始计数</string>
+
+    <string name="tips_title">统计原理与隐私说明</string>
+    <string name="tips_body">原理：系统每检测到一次有效操作，会向本 App 广播一声；本 App 听到一声就 +1，仅此而已。全程不读取、不存储、不上传你的任何屏幕内容，数据只存在你的手机里，也不联网。\n\n哪些点击计入：点中按钮、图标、列表项等"可点击控件"（含长按）。\n哪些点击不计入：软键盘打字（输入法按键大多不算可点击控件，属系统行为）、点空白处、点纯展示文字/图片。\n\n哪些滑动计入：让内容真正滚动起来的滑动（每次手势算 1 次）。\n哪些滑动不计入：刷视频这类翻页切换（不走滚动容器，系统不广播）、返回手势、下拉通知栏、空白处滑动。</string>
+
+    <string name="notif_title">手机之问 · 昨日报告</string>
+    <string name="notif_no_data">昨天没有开启统计。今天打开它，一起看看你的数字吧！</string>
+    <string name="notif_body">昨天你点击了 %1$d 次、滑动 %2$d 次，一共 %3$d 次屏幕操作。%4$s</string>
+    <string name="notif_tip_high">强度不小，今天记得每隔一会儿就让眼睛休息一下。</string>
+    <string name="notif_tip_ok">状态不错，继续保持！</string>
+    <string name="notif_channel_name">每日统计报告</string>
+</resources>

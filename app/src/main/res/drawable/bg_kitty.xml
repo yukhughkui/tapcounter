@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hello Kitty 主页背景：浅粉底 + 三丽鸥派对壁纸（用户素材） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/kitty_bg" />
+    <item
+        android:drawable="@drawable/bgimg_kitty_party"
+        android:alpha="0.16" />
+</layer-list>

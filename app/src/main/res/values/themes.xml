@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 商务藏青（唯一主题） -->
+    <style name="Theme.TapCounter" parent="Theme.Material3.Light.NoActionBar">
+        <item name="themePrimary">@color/business_primary</item>
+        <item name="themePrimaryDark">@color/business_primary_dark</item>
+        <item name="themePrimaryLight">@color/business_primary_light</item>
+        <item name="themeAccent">@color/business_accent</item>
+        <item name="themeAccentSoft">@color/business_accent_soft</item>
+        <item name="themeBg">@drawable/bg_business</item>
+        <item name="themeBgHistory">@drawable/bg_business</item>
+        <item name="themeBgRank">@drawable/bg_business</item>
+        <item name="themeBgSessions">@drawable/bg_business</item>
+        <item name="themeCard">@color/business_card</item>
+        <item name="themeCardBorder">@color/business_card_border</item>
+        <item name="themeCardDivider">@color/business_card_divider</item>
+        <item name="themeTextPrimary">@color/business_text_primary</item>
+        <item name="themeTextSecondary">@color/business_text_secondary</item>
+        <item name="themeCardOnDark">@color/business_card_on_dark</item>
+        <item name="themeChartBar">@color/business_chart_bar</item>
+        <item name="themeChartToday">@color/business_chart_today</item>
+        <item name="colorControlHighlight">@color/business_ripple</item>
+
+        <item name="colorPrimary">@color/business_primary</item>
+        <item name="colorPrimaryDark">@color/business_primary_dark</item>
+        <item name="colorOnPrimary">@color/business_card</item>
+        <item name="android:statusBarColor">@color/business_primary</item>
+        <item name="android:windowBackground">@color/business_bg</item>
+    </style>
+
+    <!-- Hello Kitty -->
+    <style name="Theme.TapCounter.Kitty" parent="Theme.Material3.Light.NoActionBar">
+        <item name="themePrimary">@color/kitty_primary</item>
+        <item name="themePrimaryDark">@color/kitty_primary_dark</item>
+        <item name="themePrimaryLight">@color/kitty_primary_light</item>
+        <item name="themeAccent">@color/kitty_accent</item>
+        <item name="themeAccentSoft">@color/kitty_accent_soft</item>
+        <item name="themeBg">@drawable/bg_kitty</item>
+        <item name="themeBgHistory">@drawable/bg_kitty_alt</item>
+        <item name="themeBgRank">@drawable/bg_kitty_alt</item>
+        <item name="themeBgSessions">@drawable/bg_kitty_alt</item>
+        <item name="themeCard">@color/kitty_card</item>
+        <item name="themeCardBorder">@color/kitty_card_border</item>
+        <item name="themeCardDivider">@color/kitty_card_divider</item>
+        <item name="themeTextPrimary">@color/kitty_text_primary</item>
+        <item name="themeTextSecondary">@color/kitty_text_secondary</item>
+        <item name="themeCardOnDark">@color/kitty_card_on_dark</item>
+        <item name="themeChartBar">@color/kitty_chart_bar</item>
+        <item name="themeChartToday">@color/kitty_chart_today</item>
+        <item name="colorControlHighlight">@color/kitty_ripple</item>
+
+        <item name="colorPrimary">@color/kitty_primary</item>
+        <item name="colorPrimaryDark">@color/kitty_primary_dark</item>
+        <item name="colorOnPrimary">@color/kitty_card</item>
+        <item name="android:statusBarColor">@color/kitty_primary</item>
+        <item name="android:windowBackground">@drawable/bg_kitty</item>
+    </style>
+
+    <!-- 原神 -->
+    <style name="Theme.TapCounter.Genshin" parent="Theme.Material3.Light.NoActionBar">
+        <item name="themePrimary">@color/genshin_primary</item>
+        <item name="themePrimaryDark">@color/genshin_primary_dark</item>
+        <item name="themePrimaryLight">@color/genshin_primary_light</item>
+        <item name="themeAccent">@color/genshin_accent</item>
+        <item name="themeAccentSoft">@color/genshin_accent_soft</item>
+        <item name="themeBg">@drawable/bg_genshin</item>
+        <item name="themeBgHistory">@drawable/bg_genshin_alt</item>
+        <item name="themeBgRank">@drawable/bg_genshin_alt</item>
+        <item name="themeBgSessions">@drawable/bg_genshin_alt</item>
+        <item name="themeCard">@color/genshin_card</item>
+        <item name="themeCardBorder">@color/genshin_card_border</item>
+        <item name="themeCardDivider">@color/genshin_card_divider</item>
+        <item name="themeTextPrimary">@color/genshin_text_primary</item>
+        <item name="themeTextSecondary">@color/genshin_text_secondary</item>
+        <item name="themeCardOnDark">@color/genshin_card_on_dark</item>
+        <item name="themeChartBar">@color/genshin_chart_bar</item>
+        <item name="themeChartToday">@color/genshin_chart_today</item>
+        <item name="colorControlHighlight">@color/genshin_ripple</item>
+
+        <item name="colorPrimary">@color/genshin_primary</item>
+        <item name="colorPrimaryDark">@color/genshin_primary_dark</item>
+        <item name="colorOnPrimary">@color/genshin_card</item>
+        <item name="android:statusBarColor">@color/genshin_primary</item>
+        <item name="android:windowBackground">@drawable/bg_genshin</item>
+    </style>
+
+    <!-- 小马宝莉 -->
+    <style name="Theme.TapCounter.Pony" parent="Theme.Material3.Light.NoActionBar">
+        <item name="themePrimary">@color/pony_primary</item>
+        <item name="themePrimaryDark">@color/pony_primary_dark</item>
+        <item name="themePrimaryLight">@color/pony_primary_light</item>
+        <item name="themeAccent">@color/pony_accent</item>
+        <item name="themeAccentSoft">@color/pony_accent_soft</item>
+        <item name="themeBg">@drawable/bg_pony</item>
+        <item name="themeBgHistory">@drawable/bg_pony_alt</item>
+        <item name="themeBgRank">@drawable/bg_pony_alt</item>
+        <item name="themeBgSessions">@drawable/bg_pony_alt</item>
+        <item name="themeCard">@color/pony_card</item>
+        <item name="themeCardBorder">@color/pony_card_border</item>
+        <item name="themeCardDivider">@color/pony_card_divider</item>
+        <item name="themeTextPrimary">@color/pony_text_primary</item>
+        <item name="themeTextSecondary">@color/pony_text_secondary</item>
+        <item name="themeCardOnDark">@color/pony_card_on_dark</item>
+        <item name="themeChartBar">@color/pony_chart_bar</item>
+        <item name="themeChartToday">@color/pony_chart_today</item>
+        <item name="colorControlHighlight">@color/pony_ripple</item>
+
+        <item name="colorPrimary">@color/pony_primary</item>
+        <item name="colorPrimaryDark">@color/pony_primary_dark</item>
+        <item name="colorOnPrimary">@color/pony_card</item>
+        <item name="android:statusBarColor">@color/pony_primary</item>
+        <item name="android:windowBackground">@drawable/bg_pony</item>
+    </style>
+</resources>

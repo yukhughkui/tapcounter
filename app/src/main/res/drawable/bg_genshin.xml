@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 原神背景：浅蓝底 + 雪山蓝天插画（用户素材） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/genshin_bg" />
+    <item
+        android:drawable="@drawable/bgimg_genshin"
+        android:alpha="0.14" />
+</layer-list>
