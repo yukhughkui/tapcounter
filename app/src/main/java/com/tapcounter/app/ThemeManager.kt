@@ -9,6 +9,7 @@ object ThemeManager {
     const val KITTY = "kitty"
     const val GENSHIN = "genshin"
     const val PONY = "pony"
+    const val GREEN = "green"
 
     private const val PREFS = "tap_counter_theme"
     private const val KEY = "theme"
@@ -26,6 +27,7 @@ object ThemeManager {
         KITTY -> R.style.Theme_TapCounter_Kitty
         GENSHIN -> R.style.Theme_TapCounter_Genshin
         PONY -> R.style.Theme_TapCounter_Pony
+        GREEN -> R.style.Theme_TapCounter_Green
         else -> R.style.Theme_TapCounter
     }
 

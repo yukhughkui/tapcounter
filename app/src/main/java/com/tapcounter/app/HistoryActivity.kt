@@ -20,6 +20,8 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
+        WallpaperManager.applyToRoot(this, WallpaperManager.KIND_SUB)
+
         listContainer = findViewById(R.id.listContainer)
 
         findViewById<MaterialButton>(R.id.btnBack).setOnClickListener { finish() }

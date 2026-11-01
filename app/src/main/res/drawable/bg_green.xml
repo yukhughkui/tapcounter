@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 护眼绿主页背景：清新校园插画 100% 全屏呈现（用户素材） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bgimg_green" />
+</layer-list>

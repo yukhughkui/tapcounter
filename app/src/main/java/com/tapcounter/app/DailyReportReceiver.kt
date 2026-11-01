@@ -33,10 +33,10 @@ class DailyReportReceiver : BroadcastReceiver() {
         val rec = db.getDay(yesterday)
 
         val title = context.getString(R.string.notif_title)
-        val body = if (rec == null || (rec.clicks + rec.swipes + rec.touches) <= 0) {
+        val body = if (rec == null || (rec.clicks + rec.swipes) <= 0) {
             context.getString(R.string.notif_no_data)
         } else {
-            val total = rec.clicks + rec.swipes + rec.touches
+            val total = rec.clicks + rec.swipes
             val tip = if (total >= 5000) {
                 context.getString(R.string.notif_tip_high)
             } else {

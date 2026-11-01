@@ -17,6 +17,8 @@ class AppRankActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app_rank)
 
+        WallpaperManager.applyToRoot(this, WallpaperManager.KIND_SUB)
+
         findViewById<MaterialButton>(R.id.btnBack).setOnClickListener { finish() }
 
         val container = findViewById<LinearLayout>(R.id.listContainer)

@@ -11,6 +11,8 @@
     <attr name="themeBgSessions" format="reference" />
     <attr name="themeDecorIcon" format="reference" />
     <attr name="themeCard" format="color" />
+    <attr name="themeCardBg" format="color" />
+    <attr name="themeCardPrimaryBg" format="color" />
     <attr name="themeCardBorder" format="color" />
     <attr name="themeCardDivider" format="color" />
     <attr name="themeTextPrimary" format="color" />
@@ -18,4 +20,9 @@
     <attr name="themeCardOnDark" format="color" />
     <attr name="themeChartBar" format="color" />
     <attr name="themeChartToday" format="color" />
+
+    <declare-styleable name="StrokeTextView">
+        <attr name="strokeColor" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+    </declare-styleable>
 </resources>

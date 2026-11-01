@@ -14,6 +14,8 @@ class SessionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sessions)
 
+        WallpaperManager.applyToRoot(this, WallpaperManager.KIND_SUB)
+
         findViewById<MaterialButton>(R.id.btnBack).setOnClickListener { finish() }
 
         val container = findViewById<LinearLayout>(R.id.listContainer)

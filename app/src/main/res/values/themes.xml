@@ -12,6 +12,8 @@
         <item name="themeBgRank">@drawable/bg_business</item>
         <item name="themeBgSessions">@drawable/bg_business</item>
         <item name="themeCard">@color/business_card</item>
+        <item name="themeCardBg">@color/business_card</item>
+        <item name="themeCardPrimaryBg">@color/business_primary</item>
         <item name="themeCardBorder">@color/business_card_border</item>
         <item name="themeCardDivider">@color/business_card_divider</item>
         <item name="themeTextPrimary">@color/business_text_primary</item>
@@ -40,6 +42,8 @@
         <item name="themeBgRank">@drawable/bg_kitty_alt</item>
         <item name="themeBgSessions">@drawable/bg_kitty_alt</item>
         <item name="themeCard">@color/kitty_card</item>
+        <item name="themeCardBg">@color/kitty_card_bg</item>
+        <item name="themeCardPrimaryBg">@color/kitty_primary_bg</item>
         <item name="themeCardBorder">@color/kitty_card_border</item>
         <item name="themeCardDivider">@color/kitty_card_divider</item>
         <item name="themeTextPrimary">@color/kitty_text_primary</item>
@@ -68,6 +72,8 @@
         <item name="themeBgRank">@drawable/bg_genshin_alt</item>
         <item name="themeBgSessions">@drawable/bg_genshin_alt</item>
         <item name="themeCard">@color/genshin_card</item>
+        <item name="themeCardBg">@color/genshin_card_bg</item>
+        <item name="themeCardPrimaryBg">@color/genshin_primary_bg</item>
         <item name="themeCardBorder">@color/genshin_card_border</item>
         <item name="themeCardDivider">@color/genshin_card_divider</item>
         <item name="themeTextPrimary">@color/genshin_text_primary</item>
@@ -96,6 +102,8 @@
         <item name="themeBgRank">@drawable/bg_pony_alt</item>
         <item name="themeBgSessions">@drawable/bg_pony_alt</item>
         <item name="themeCard">@color/pony_card</item>
+        <item name="themeCardBg">@color/pony_card_bg</item>
+        <item name="themeCardPrimaryBg">@color/pony_primary_bg</item>
         <item name="themeCardBorder">@color/pony_card_border</item>
         <item name="themeCardDivider">@color/pony_card_divider</item>
         <item name="themeTextPrimary">@color/pony_text_primary</item>
@@ -110,5 +118,35 @@
         <item name="colorOnPrimary">@color/pony_card</item>
         <item name="android:statusBarColor">@color/pony_primary</item>
         <item name="android:windowBackground">@drawable/bg_pony</item>
+    </style>
+
+    <!-- 护眼绿 -->
+    <style name="Theme.TapCounter.Green" parent="Theme.Material3.Light.NoActionBar">
+        <item name="themePrimary">@color/green_primary</item>
+        <item name="themePrimaryDark">@color/green_primary_dark</item>
+        <item name="themePrimaryLight">@color/green_primary_light</item>
+        <item name="themeAccent">@color/green_accent</item>
+        <item name="themeAccentSoft">@color/green_accent_soft</item>
+        <item name="themeBg">@drawable/bg_green</item>
+        <item name="themeBgHistory">@drawable/bg_green_alt</item>
+        <item name="themeBgRank">@drawable/bg_green_alt</item>
+        <item name="themeBgSessions">@drawable/bg_green_alt</item>
+        <item name="themeCard">@color/green_card</item>
+        <item name="themeCardBg">@color/green_card_bg</item>
+        <item name="themeCardPrimaryBg">@color/green_primary_bg</item>
+        <item name="themeCardBorder">@color/green_card_border</item>
+        <item name="themeCardDivider">@color/green_card_divider</item>
+        <item name="themeTextPrimary">@color/green_text_primary</item>
+        <item name="themeTextSecondary">@color/green_text_secondary</item>
+        <item name="themeCardOnDark">@color/green_card_on_dark</item>
+        <item name="themeChartBar">@color/green_chart_bar</item>
+        <item name="themeChartToday">@color/green_chart_today</item>
+        <item name="colorControlHighlight">@color/green_ripple</item>
+
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryDark">@color/green_primary_dark</item>
+        <item name="colorOnPrimary">@color/green_card</item>
+        <item name="android:statusBarColor">@color/green_primary</item>
+        <item name="android:windowBackground">@drawable/bg_green</item>
     </style>
 </resources>

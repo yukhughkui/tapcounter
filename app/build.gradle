@@ -11,8 +11,8 @@ android {
         applicationId "com.tapcounter.app"
         minSdk 24
         targetSdk 35
-        versionCode 23
-        versionName "2.0.5"
+        versionCode 36
+        versionName "2.2.3"
     }
 
     buildTypes {

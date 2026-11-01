@@ -4,7 +4,7 @@
     <color name="business_primary">#1B3A5C</color>
     <color name="business_primary_dark">#12263D</color>
     <color name="business_primary_light">#E8EDF4</color>
-    <color name="business_accent">#BFA15F</color>
+    <color name="business_accent">#A98C50</color>
     <color name="business_accent_soft">#F4EFE3</color>
     <color name="business_bg">#F5F6F8</color>
     <color name="business_card">#FFFFFF</color>
@@ -21,10 +21,12 @@
     <color name="kitty_primary">#B05A96</color>
     <color name="kitty_primary_dark">#8A3F78</color>
     <color name="kitty_primary_light">#F7E3F1</color>
-    <color name="kitty_accent">#F5A7C8</color>
+    <color name="kitty_accent">#EC8FBD</color>
     <color name="kitty_accent_soft">#FDEFF5</color>
     <color name="kitty_bg">#FFF7F8</color>
     <color name="kitty_card">#FFFFFF</color>
+    <color name="kitty_card_bg">#99FFFFFF</color>
+    <color name="kitty_primary_bg">#99B05A96</color>
     <color name="kitty_card_border">#E8D0E4</color>
     <color name="kitty_card_divider">#33FFFFFF</color>
     <color name="kitty_text_primary">#4A2E44</color>
@@ -38,10 +40,12 @@
     <color name="genshin_primary">#3D7BBD</color>
     <color name="genshin_primary_dark">#2A5A8A</color>
     <color name="genshin_primary_light">#E3EEF9</color>
-    <color name="genshin_accent">#D6A53F</color>
+    <color name="genshin_accent">#3D7BBD</color>
     <color name="genshin_accent_soft">#F6EBD3</color>
     <color name="genshin_bg">#F5F7FB</color>
     <color name="genshin_card">#FFFFFF</color>
+    <color name="genshin_card_bg">#99FFFFFF</color>
+    <color name="genshin_primary_bg">#993D7BBD</color>
     <color name="genshin_card_border">#DCE7F2</color>
     <color name="genshin_card_divider">#33FFFFFF</color>
     <color name="genshin_text_primary">#22304A</color>
@@ -55,10 +59,12 @@
     <color name="pony_primary">#9B6BB8</color>
     <color name="pony_primary_dark">#6D4790</color>
     <color name="pony_primary_light">#F0E7F7</color>
-    <color name="pony_accent">#F2B64E</color>
+    <color name="pony_accent">#9B6BB8</color>
     <color name="pony_accent_soft">#FBF0DC</color>
     <color name="pony_bg">#FFFAF4</color>
     <color name="pony_card">#FFFFFF</color>
+    <color name="pony_card_bg">#99FFFFFF</color>
+    <color name="pony_primary_bg">#999B6BB8</color>
     <color name="pony_card_border">#EFE0D0</color>
     <color name="pony_card_divider">#33FFFFFF</color>
     <color name="pony_text_primary">#4A3A4E</color>
@@ -67,6 +73,25 @@
     <color name="pony_chart_bar">#E3CEF0</color>
     <color name="pony_chart_today">#F2B64E</color>
     <color name="pony_ripple">#409B6BB8</color>
+
+    <!-- 护眼绿（柔和低刺激） -->
+    <color name="green_primary">#3E8E5A</color>
+    <color name="green_primary_dark">#2C6B43</color>
+    <color name="green_primary_light">#E7F2EA</color>
+    <color name="green_accent">#4CAF50</color>
+    <color name="green_accent_soft">#E9F5EC</color>
+    <color name="green_bg">#F3F8F4</color>
+    <color name="green_card">#FFFFFF</color>
+    <color name="green_card_bg">#99FFFFFF</color>
+    <color name="green_primary_bg">#993E8E5A</color>
+    <color name="green_card_border">#DDEAE2</color>
+    <color name="green_card_divider">#33FFFFFF</color>
+    <color name="green_text_primary">#26332A</color>
+    <color name="green_text_secondary">#7C8F83</color>
+    <color name="green_card_on_dark">#D9EEDF</color>
+    <color name="green_chart_bar">#C9E0D2</color>
+    <color name="green_chart_today">#66BB6A</color>
+    <color name="green_ripple">#403E8E5A</color>
 
     <color name="ic_launcher_background">#12263D</color>
 </resources>

@@ -26,23 +26,27 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <com.tapcounter.app.StrokeTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/brand_subtitle"
                     android:textColor="?attr/themeAccent"
                     android:textSize="11sp"
                     android:letterSpacing="0.35"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:strokeColor="#FFFFFF"
+                    app:strokeWidth="1.5dp" />
 
-                <TextView
+                <com.tapcounter.app.StrokeTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/app_name"
                     android:textColor="?attr/themeTextPrimary"
                     android:textSize="26sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:strokeColor="#FFFFFF"
+                    app:strokeWidth="2dp" />
 
                 <View
                     android:layout_width="36dp"
@@ -70,7 +74,7 @@ app:rippleColor="?attr/themePrimary"
             android:layout_height="wrap_content"
 android:clickable="true"
             app:rippleColor="?attr/themePrimary"
-            app:cardBackgroundColor="?attr/themeCard"
+            app:cardBackgroundColor="?attr/themeCardBg"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:strokeColor="?attr/themeCardBorder"
@@ -133,9 +137,9 @@ app:rippleColor="?attr/themePrimary"
             android:layout_height="wrap_content"
 android:clickable="true"
             app:rippleColor="?attr/themePrimary"
-            app:cardBackgroundColor="?attr/themePrimary"
+            app:cardBackgroundColor="?attr/themeCardPrimaryBg"
             app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="16dp">
 
             <LinearLayout
@@ -144,14 +148,16 @@ android:clickable="true"
                 android:orientation="vertical"
                 android:padding="22dp">
 
-                <TextView
+                <com.tapcounter.app.StrokeTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/today_subtitle"
                     android:textColor="?attr/themeAccent"
                     android:textSize="10sp"
                     android:letterSpacing="0.3"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:strokeColor="#FFFFFF"
+                    app:strokeWidth="1.5dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -229,7 +235,7 @@ android:clickable="true"
                         android:orientation="vertical"
                         android:gravity="center">
 
-                        <TextView
+                        <com.tapcounter.app.StrokeTextView
                             android:id="@+id/tvTodayTouches"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -237,7 +243,9 @@ android:clickable="true"
                             android:textColor="?attr/themeAccent"
                             android:textSize="34sp"
                             android:letterSpacing="0.04"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:strokeColor="#FFFFFF"
+                            app:strokeWidth="2dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -256,7 +264,7 @@ android:clickable="true"
                     android:layout_marginTop="16dp"
                     android:background="?attr/themeCardDivider" />
 
-                <TextView
+                <com.tapcounter.app.StrokeTextView
                     android:id="@+id/tvScreenStats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -265,7 +273,9 @@ android:clickable="true"
                     android:textColor="?attr/themeAccent"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    app:strokeColor="#FFFFFF"
+                    app:strokeWidth="1.5dp" />
 
                 <TextView
                     android:id="@+id/tvTotal"
@@ -285,7 +295,7 @@ android:clickable="true"
             android:layout_height="wrap_content"
 android:clickable="true"
             app:rippleColor="?attr/themePrimary"
-            app:cardBackgroundColor="?attr/themeCard"
+            app:cardBackgroundColor="?attr/themeCardBg"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:strokeColor="?attr/themeCardBorder"
@@ -413,7 +423,7 @@ app:rippleColor="?attr/themePrimary"
             android:layout_height="wrap_content"
 android:clickable="true"
             app:rippleColor="?attr/themePrimary"
-            app:cardBackgroundColor="?attr/themeCard"
+            app:cardBackgroundColor="?attr/themeCardBg"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:strokeColor="?attr/themeCardBorder"
@@ -432,7 +442,7 @@ app:rippleColor="?attr/themePrimary"
                     android:layout_height="wrap_content"
                     android:text="@string/view_history"
                     android:textSize="14sp"
-                    android:backgroundTint="?attr/themeCard"
+                    android:backgroundTint="?attr/themeCardBg"
                     android:textColor="?attr/themePrimary"
                     app:icon="@android:drawable/ic_menu_sort_by_size"
                     app:iconTint="?attr/themeAccent"
@@ -453,7 +463,7 @@ app:rippleColor="?attr/themePrimary"
                     android:layout_height="wrap_content"
                     android:text="@string/view_app_rank"
                     android:textSize="14sp"
-                    android:backgroundTint="?attr/themeCard"
+                    android:backgroundTint="?attr/themeCardBg"
                     android:textColor="?attr/themePrimary"
                     app:icon="@android:drawable/ic_menu_manage"
                     app:iconTint="?attr/themeAccent"
@@ -474,7 +484,7 @@ app:rippleColor="?attr/themePrimary"
                     android:layout_height="wrap_content"
                     android:text="@string/view_sessions"
                     android:textSize="14sp"
-                    android:backgroundTint="?attr/themeCard"
+                    android:backgroundTint="?attr/themeCardBg"
                     android:textColor="?attr/themePrimary"
                     app:icon="@android:drawable/ic_menu_agenda"
                     app:iconTint="?attr/themeAccent"
@@ -489,7 +499,7 @@ app:rippleColor="?attr/themePrimary"
             android:layout_height="wrap_content"
 android:clickable="true"
             app:rippleColor="?attr/themePrimary"
-            app:cardBackgroundColor="?attr/themeCard"
+            app:cardBackgroundColor="?attr/themeCardBg"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:strokeColor="?attr/themeCardBorder"

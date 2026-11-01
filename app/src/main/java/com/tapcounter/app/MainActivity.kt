@@ -5,6 +5,7 @@ import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +14,7 @@ import android.provider.Settings
 import android.view.accessibility.AccessibilityManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
@@ -33,6 +35,16 @@ class MainActivity : AppCompatActivity() {
 
     private val handler = Handler(Looper.getMainLooper())
 
+    private val wallpaperMainLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            handleWallpaperResult(uri, WallpaperManager.KIND_MAIN)
+        }
+
+    private val wallpaperSubLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            handleWallpaperResult(uri, WallpaperManager.KIND_SUB)
+        }
+
     private val refreshRunnable = object : Runnable {
         override fun run() {
             refresh()
@@ -44,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         setTheme(ThemeManager.styleOf(ThemeManager.current(this)))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        WallpaperManager.applyWindow(this, WallpaperManager.KIND_MAIN)
 
         tvTodayClicks = findViewById(R.id.tvTodayClicks)
         tvTodaySwipes = findViewById(R.id.tvTodaySwipes)
@@ -148,18 +162,63 @@ class MainActivity : AppCompatActivity() {
         return if (hours > 0) "${hours}小时${mins}分" else "${mins}分"
     }
 
+    private fun handleWallpaperResult(uri: Uri?, kind: String) {
+        if (uri == null) return
+        if (WallpaperManager.save(this, uri, kind)) {
+            if (kind == WallpaperManager.KIND_MAIN) {
+                WallpaperManager.applyWindow(this, kind)
+            }
+            Toast.makeText(this, getString(R.string.wallpaper_saved), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, getString(R.string.wallpaper_failed), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun resetWallpaper(kind: String) {
+        WallpaperManager.delete(this, kind)
+        if (kind == WallpaperManager.KIND_MAIN) {
+            recreate()
+        } else {
+            Toast.makeText(this, getString(R.string.wallpaper_reset_done), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showWallpaperDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.wallpaper_dialog_title))
+            .setItems(
+                arrayOf(
+                    getString(R.string.wallpaper_main),
+                    getString(R.string.wallpaper_sub),
+                    getString(R.string.wallpaper_reset_main),
+                    getString(R.string.wallpaper_reset_sub)
+                )
+            ) { _, which ->
+                when (which) {
+                    0 -> wallpaperMainLauncher.launch("image/*")
+                    1 -> wallpaperSubLauncher.launch("image/*")
+                    2 -> resetWallpaper(WallpaperManager.KIND_MAIN)
+                    3 -> resetWallpaper(WallpaperManager.KIND_SUB)
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
     private fun showThemeDialog() {
         val names = arrayOf(
             getString(R.string.theme_business),
             getString(R.string.theme_kitty),
             getString(R.string.theme_genshin),
-            getString(R.string.theme_pony)
+            getString(R.string.theme_pony),
+            getString(R.string.theme_green)
         )
         val values = arrayOf(
             ThemeManager.BUSINESS,
             ThemeManager.KITTY,
             ThemeManager.GENSHIN,
-            ThemeManager.PONY
+            ThemeManager.PONY,
+            ThemeManager.GREEN
         )
         val current = ThemeManager.current(this)
         val selected = values.indexOf(current).coerceAtLeast(0)
@@ -169,6 +228,9 @@ class MainActivity : AppCompatActivity() {
                 ThemeManager.save(this, values[which])
                 dialog.dismiss()
                 recreate()
+            }
+            .setNeutralButton(getString(R.string.wallpaper_dialog_title)) { _, _ ->
+                showWallpaperDialog()
             }
             .setNegativeButton(getString(R.string.cancel), null)
             .show()
