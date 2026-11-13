@@ -12,8 +12,8 @@
         <item name="themeBgRank">@drawable/bg_business</item>
         <item name="themeBgSessions">@drawable/bg_business</item>
         <item name="themeCard">@color/business_card</item>
-        <item name="themeCardBg">@color/business_card</item>
-        <item name="themeCardPrimaryBg">@color/business_primary</item>
+        <item name="themeCardBg">@color/business_card_bg</item>
+        <item name="themeCardPrimaryBg">@color/business_primary_bg</item>
         <item name="themeCardBorder">@color/business_card_border</item>
         <item name="themeCardDivider">@color/business_card_divider</item>
         <item name="themeTextPrimary">@color/business_text_primary</item>

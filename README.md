@@ -31,9 +31,9 @@
 
 | 版本 | 文件 |
 | --- | --- |
-| 最新 v2.2.4 | [点此直接下载 APK](https://github.com/yukhughkui/tapcounter/raw/main/apk/%E6%89%8B%E6%9C%BA%E4%B9%8B%E9%97%AE_v2.2.4.apk) |
+| 最新 v2.2.5 | [点此直接下载 APK](https://github.com/yukhughkui/tapcounter/raw/main/apk/%E6%89%8B%E6%9C%BA%E4%B9%8B%E9%97%AE_v2.2.5.apk) |
 
-全部 25 个历史版本（v1.0 → v2.2.4）见 [apk/](apk/)，每个迭代版本都可下载安装体验。
+全部 26 个历史版本（v1.0 → v2.2.5）见 [apk/](apk/)，每个迭代版本都可下载安装体验。
 
 ## 主题与图标
 
@@ -61,7 +61,7 @@
 
 ```
 ├── app/                 # Android 应用模块（Kotlin 源码 + 资源）
-├── apk/                 # 全部历史版本安装包（v1.0 → v2.2.4）
+├── apk/                 # 全部历史版本安装包（v1.0 → v2.2.5）
 ├── scripts/             # 构建 / 图标 / 主题素材处理脚本
 ├── gradle/              # Gradle wrapper
 └── 技术文档.md           # 产品介绍与开发文档

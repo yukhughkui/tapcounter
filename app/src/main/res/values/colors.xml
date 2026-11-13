@@ -8,6 +8,8 @@
     <color name="business_accent_soft">#F4EFE3</color>
     <color name="business_bg">#F5F6F8</color>
     <color name="business_card">#FFFFFF</color>
+    <color name="business_card_bg">#99FFFFFF</color>
+    <color name="business_primary_bg">#991B3A5C</color>
     <color name="business_card_border">#E6E9EF</color>
     <color name="business_card_divider">#33FFFFFF</color>
     <color name="business_text_primary">#23272F</color>
