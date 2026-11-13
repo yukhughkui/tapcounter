@@ -6,7 +6,7 @@
 
 原项目名「点击计数」，从 v2.0 起正式更名 **手机之问**，包名保持 `com.tapcounter.app` 不变。
 
-![手机之问图标](docs/icon_heart_nobeam.png)
+![手机之问图标](docs/icon_question.png)
 
 ## 在线体验
 
@@ -31,14 +31,14 @@
 
 | 版本 | 文件 |
 | --- | --- |
-| 最新 v2.2.3 | [点此直接下载 APK](https://github.com/yukhughkui/tapcounter/raw/main/apk/%E6%89%8B%E6%9C%BA%E4%B9%8B%E9%97%AE_v2.2.3.apk) |
+| 最新 v2.2.4 | [点此直接下载 APK](https://github.com/yukhughkui/tapcounter/raw/main/apk/%E6%89%8B%E6%9C%BA%E4%B9%8B%E9%97%AE_v2.2.4.apk) |
 
-全部 27 个历史版本（v1.0 → v2.2.3）见 [apk/](apk/)，每个迭代版本都可下载安装体验。
+全部 25 个历史版本（v1.0 → v2.2.4）见 [apk/](apk/)，每个迭代版本都可下载安装体验。
 
 ## 主题与图标
 
 - 五套主题各配官方插画背景与主色涟漪（商务藏青 #1B3A5C / Hello Kitty 深粉 #EC8FBD / 原神天蓝 #3D7BBD / 小马宝莉紫 #9B6BB8 / 护眼绿深绿 #4CAF50）。
-- 图标最终定稿为黑金爱心·去光影版（v2.0.5 起），沿革见 [技术文档](技术文档.md)。
+- 图标为金色立体问号·去光束版（v2.2.4 起），沿革见 [技术文档](技术文档.md)。
 
 ## 技术栈
 
@@ -61,7 +61,7 @@
 
 ```
 ├── app/                 # Android 应用模块（Kotlin 源码 + 资源）
-├── apk/                 # 全部历史版本安装包（v1.0 → v2.2.3）
+├── apk/                 # 全部历史版本安装包（v1.0 → v2.2.4）
 ├── scripts/             # 构建 / 图标 / 主题素材处理脚本
 ├── gradle/              # Gradle wrapper
 └── 技术文档.md           # 产品介绍与开发文档
