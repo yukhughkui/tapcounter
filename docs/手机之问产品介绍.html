@@ -309,7 +309,7 @@ col.yes{width:22%}col.no{width:22%}col.why{width:56%}
     </div>
     <p class="hero-quote">每天，你的手机都在问你：<em>今天，你点了几次？</em></p>
     <div class="hero-stats">
-      <div class="hs"><b>27</b><span>版本迭代</span></div>
+      <div class="hs"><b>28</b><span>版本迭代</span></div>
       <div class="hs"><b>5</b><span>套主题</span></div>
       <div class="hs"><b>3</b><span>统计口径</span></div>
       <div class="hs"><b>5 分钟</b><span>实时刷新</span></div>
@@ -380,7 +380,7 @@ col.yes{width:22%}col.no{width:22%}col.why{width:56%}
           <span class="num">04</span>
         </div>
         <h3>常驻实时通知</h3>
-        <p>服务开启后在状态栏挂一条常驻通知，每 5 分钟刷新今日点击 / 滑动 / 碰屏与亮屏次数、时长；每日 7:30 闹钟覆盖播报一次。</p>
+        <p>服务开启后在状态栏挂一条常驻通知，正文分两行（三口径一行、亮屏次数与时长一行），每 5 分钟刷新；每日 7:30 闹钟覆盖播报一次；手动删除后会自动重新挂回。</p>
         <span class="feat-tag">状态栏常驻</span>
       </div>
       <div class="c">
@@ -742,7 +742,7 @@ col.yes{width:22%}col.no{width:22%}col.why{width:56%}
     <div class="sec-head rv">
       <span class="sec-no">08</span>
       <h2 class="sec-title">版本时间轴</h2>
-      <span class="sec-sub" style="margin-left:auto">v1.0 → v2.2.6，共 27 个版本</span>
+      <span class="sec-sub" style="margin-left:auto">v1.0 → v2.2.8，共 28 个版本</span>
     </div>
     <div class="tl rv">
       <div class="t-item"><div class="t-time">v1.0</div><div class="t-dot"></div><div class="t-body"><h4>起点</h4><p>无障碍服务监听点击，SQLite 按天分行，30 天柱状图。</p></div></div>
@@ -763,7 +763,8 @@ col.yes{width:22%}col.no{width:22%}col.why{width:56%}
       <div class="t-item"><div class="t-time">v2.2.3</div><div class="t-dot"></div><div class="t-body"><h4>自定义壁纸与护眼绿</h4><p>主 / 副壁纸可分别从相册更换并恢复默认；新增护眼绿主题；商务主题去描边；昨日报告口径修正。</p></div></div>
       <div class="t-item"><div class="t-time">v2.2.4</div><div class="t-dot"></div><div class="t-body"><h4>问号图标装机</h4><p>图标更换为金色立体问号·去光束版：问号、圆点与底部涟漪保留，移除顶部光束与光粒。</p></div></div>
       <div class="t-item"><div class="t-time">v2.2.5</div><div class="t-dot"></div><div class="t-body"><h4>卡片半透明对齐</h4><p>商务藏青卡片对齐半透明口径，与其余四套主题一致：普通卡半透明白底，焦点卡半透明主色。</p></div></div>
-      <div class="t-item"><div class="t-time">v2.2.6</div><div class="t-dot"></div><div class="t-body"><h4>常驻实时通知<span class="badge">当前</span></h4><p>服务开启即挂状态栏常驻通知，每 5 分钟刷新今日三口径与亮屏数据；每日 7:30 闹钟覆盖播报一次。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.2.6</div><div class="t-dot"></div><div class="t-body"><h4>常驻实时通知</h4><p>服务开启即挂状态栏常驻通知，每 5 分钟刷新今日三口径与亮屏数据；每日 7:30 闹钟覆盖播报一次。</p></div></div>
+      <div class="t-item"><div class="t-time">v2.2.8</div><div class="t-dot"></div><div class="t-body"><h4>通知两行与删除自恢复<span class="badge">当前</span></h4><p>通知正文分两行：三口径一行、亮屏次数与累计时长一行；挂载删除回调，手动删除后自动重挂；修复拆行占位符越界导致服务中断的问题，通知异常不再拖垮计数。</p></div></div>
     </div>
   </div>
 </section>
@@ -779,7 +780,7 @@ col.yes{width:22%}col.no{width:22%}col.why{width:56%}
       <div class="tech rv"><b>Kotlin · Android</b><span>原生开发，minSdk 24（Android 7.0+），targetSdk 35，包名 com.tapcounter.app</span></div>
       <div class="tech rv"><b>无障碍服务</b><span>TapCounterService 监听点击与滚动手势广播，事件包名归因到具体应用。</span></div>
       <div class="tech rv"><b>SQLite 本地库</b><span>DB version 3，五张表按天分行，数据只存本机。</span></div>
-      <div class="tech rv"><b>常驻实时通知</b><span>服务连接后挂 ongoing 常驻通知，Handler 每 5 分钟刷新今日三口径与亮屏数据，AlarmManager 每日 7:30 覆盖播报。</span></div>
+      <div class="tech rv"><b>常驻实时通知</b><span>服务连接后挂 ongoing 常驻通知，正文分两行，Handler 每 5 分钟刷新今日三口径与亮屏数据，AlarmManager 每日 7:30 覆盖播报；删除回调触发后自动重挂。</span></div>
       <div class="tech rv"><b>Material 主题切换</b><span>五套主题：主色 + 点缀色 + 背景图 + 本色涟漪，运行时可切换；每套主 / 副壁纸可从相册自定义并恢复默认。</span></div>
       <div class="tech rv"><b>自适应图标</b><span>位图 adaptive 方案，五档密度 + 1080px 前景，兼容 Android 8+。</span></div>
     </div>
@@ -819,7 +820,7 @@ col.yes{width:22%}col.no{width:22%}col.why{width:56%}
 <footer class="footer">
   <div class="wrap">
     <p><b>手机之问</b> · 一款统计你每天点了多少次手机的 Android 应用</p>
-    <p style="margin-top:6px">当前版本 v2.2.6 · 包名 com.tapcounter.app · 本页为产品介绍与开发文档</p>
+    <p style="margin-top:6px">当前版本 v2.2.8 · 包名 com.tapcounter.app · 本页为产品介绍与开发文档</p>
   </div>
 </footer>
 
