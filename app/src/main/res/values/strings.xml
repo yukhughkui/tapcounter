@@ -60,4 +60,7 @@
     <string name="notif_tip_high">强度不小，今天记得每隔一会儿就让眼睛休息一下。</string>
     <string name="notif_tip_ok">状态不错，继续保持！</string>
     <string name="notif_channel_name">每日统计报告</string>
+    <string name="pinned_title">手机之问 · 今日实时</string>
+    <string name="pinned_body">点击 %1$d · 滑动 %2$d · 碰屏 %3$d｜亮屏 %4$d 次 · 累计 %5$s</string>
+    <string name="pinned_channel_name">今日实时常驻通知</string>
 </resources>

@@ -41,6 +41,13 @@ class TapCounterService : AccessibilityService() {
         }
     }
 
+    private val pinnedTickRunnable = object : Runnable {
+        override fun run() {
+            DailyReportReceiver.postPinned(this@TapCounterService)
+            handler.postDelayed(this, 300000)
+        }
+    }
+
     override fun onServiceConnected() {
         super.onServiceConnected()
         val filter = IntentFilter().apply {
@@ -51,6 +58,8 @@ class TapCounterService : AccessibilityService() {
         val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
         if (pm.isInteractive) screenOnTimestamp = System.currentTimeMillis()
         handler.postDelayed(screenTickRunnable, 60000)
+        DailyReportReceiver.postPinned(this)
+        handler.postDelayed(pinnedTickRunnable, 300000)
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
